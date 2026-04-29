@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /
+Disallow: /src/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /dist/
+
+Sitemap: https://adityaaaaportdev.vercel.app/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 3
+
+User-agent: Slurp
+Allow: /
+
+User-agent: facebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+Host: https://adityaaaaportdev.vercel.app

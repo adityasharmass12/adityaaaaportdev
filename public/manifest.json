@@ -1,0 +1,51 @@
+{
+  "name": "Aditya Sharma — AI/ML Developer & Full-Stack Engineer Portfolio",
+  "short_name": "Aditya Sharma",
+  "description": "Professional portfolio of Aditya Sharma (adityaaaportdev) — Computer Science Engineering student specializing in AI/ML, Python, React, and Full-Stack Development at Delhi Technical Campus (GGSIPU).",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090414",
+  "theme_color": "#090414",
+  "orientation": "portrait-primary",
+  "categories": ["portfolio", "technology", "education", "developer"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/my-image.jpg.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/portfolio-screenshot.jpg.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Portfolio homepage with hero section and navigation"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "About Aditya Sharma",
+      "short_name": "About",
+      "url": "/#about",
+      "description": "Learn about Aditya Sharma's background and interests"
+    },
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "url": "/#projects",
+      "description": "View Aditya Sharma's featured projects including PoisonGuard"
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "url": "/#contact",
+      "description": "Get in touch with Aditya Sharma"
+    }
+  ]
+}
