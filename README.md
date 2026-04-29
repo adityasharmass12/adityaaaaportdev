@@ -6,6 +6,10 @@ A modern, interactive personal portfolio website designed to effectively showcas
 
 This portfolio serves as a central platform to present my work as a front-end developer. It combines visually engaging elements with a clean and responsive layout to deliver an optimal user experience across all devices.
 
+## Created By
+
+**Aditya Sharma** - Developer & AI/ML Enthusiast
+
 ## Key Features
 
 - **Interactive User Interface**  
