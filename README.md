@@ -32,7 +32,7 @@ This portfolio serves as a central platform to present my work as a front-end de
 
 ## Tech Stack
 
-- **Frontend Framework:** React 18 (with Vite)
+- **Frontend Framework:** React (with Vite)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
