@@ -24,21 +24,22 @@ export const Extra: React.FC = () => {
             .join(' • ');
 
           return (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            whileHover={{ scale: 1.02, x: 10, backgroundColor: "rgba(168,85,247,0.1)" }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: index * 0.15, type: "spring", stiffness: 250, damping: 20 }}
-            className="flex items-start gap-4 p-5 rounded-xl transition-all border border-purple-500/20 bg-purple-900/10 backdrop-blur-xl hover:border-purple-500/40 shadow-[0_4px_24px_rgba(168,85,247,0.1)] hover:shadow-[0_8px_32px_rgba(168,85,247,0.2)]"
-          >
-            <div className="mt-1 text-emerald-400">
-              <Sparkles size={24} />
-            </div>
-            <p className="text-purple-50 leading-loose font-medium tracking-wide text-lg">{text}</p>
-          </motion.div>
-        ))}
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              whileHover={{ scale: 1.02, x: 10, backgroundColor: "rgba(168,85,247,0.1)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: index * 0.15, type: "spring", stiffness: 250, damping: 20 }}
+              className="flex items-start gap-4 p-5 rounded-xl transition-all border border-purple-500/20 bg-purple-900/10 backdrop-blur-xl hover:border-purple-500/40 shadow-[0_4px_24px_rgba(168,85,247,0.1)] hover:shadow-[0_8px_32px_rgba(168,85,247,0.2)]"
+            >
+              <div className="mt-1 text-emerald-400">
+                <Sparkles size={24} />
+              </div>
+              <p className="text-purple-50 leading-loose font-medium tracking-wide text-lg">{text}</p>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
