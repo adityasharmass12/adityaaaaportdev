@@ -32,42 +32,17 @@ export const resumeData = {
   experience: [
     {
       company: "AI Renaissance (A.I.R)",
-      role: "Core Member – Video Editor",
-      dates: "Sep 2025 - Present",
-      location: "New Delhi, India",
-      bullets: [
-        "Serve as a core team member of an AI-focused student organization, producing and editing technical video content that communicates complex AI/ML concepts to a broad student audience.",
-        "Collaborate cross-functionally with designers, writers, and speakers to develop structured content pipelines, improving publishing consistency and overall team output quality.",
-        "Contribute to the organization's mission of making AI education accessible, directly supporting community learning initiatives."
-      ]
+      role: "Core Member",
+      dates: "September 2025 - Present (7 months)",
+      location: "",
+      bullets: []
     },
     {
       company: "Smaaash Entertainment Pvt. Ltd.",
       role: "Campus Ambassador",
-      dates: "Jun 2025 - Present",
-      location: "New Delhi, India",
-      bullets: [
-        "Appointed as the official student representative for Smaaash on campus, driving brand engagement through strategic outreach, events, and peer community building.",
-        "Demonstrated leadership, proactive communication, and stakeholder management skills directly transferable to collaborative, team-driven engineering culture."
-      ]
-    },
-    {
-      company: "TheFossClub Hackathon",
-      role: "Social Media Manager – Volunteer",
-      dates: "Feb 22–23, 2025",
-      location: "New Delhi, India",
-      bullets: [
-        "Managed end-to-end social media communications throughout a 24-hour hackathon, coordinating real-time updates, participant engagement, and event amplification across platforms."
-      ]
-    },
-    {
-      company: "IgniteRoom",
-      role: "Event Manager – Volunteer",
-      dates: "Jun 28–29, 2025",
-      location: "New Delhi, India",
-      bullets: [
-        "Coordinated logistics and participant experience for a technical event, managing on-ground operations to ensure a smooth, high-quality, and memorable experience for all attendees."
-      ]
+      dates: "June 2025 - Present (10 months)",
+      location: "",
+      bullets: []
     }
   ],
   achievements: [
@@ -150,46 +125,40 @@ export const resumeData = {
   ],
   skills: [
     {
-      group: "Programming Languages",
-      items: ["C", "C++", "Python", "JavaScript", "ReactJS", "TypeScript", "HTML", "CSS"]
+      group: "Top Skills",
+      items: ["Social Media Management", "Team Leadership", "Python"]
     },
     {
-      group: "Frameworks & Libraries",
-      items: ["React.js", "LangChain", "Tailwind CSS", "Node.js"]
+      group: "Languages",
+      items: ["C", "C++", "Python", "HTML", "CSS", "JavaScript", "LangChain"]
     },
     {
-      group: "Core CS Competencies",
-      items: ["Data Structures & Algorithms", "Object Oriented Programming", "REST API Design", "AI/ML Fundamentals", "Prompt Engineering"]
-    },
-    {
-      group: "Developer Tools & Platforms",
-      items: ["Git", "GitHub", "VS Code", "Vercel"]
-    },
-    {
-      group: "Soft Skills",
-      items: ["Team Leadership", "Problem Solving", "Cross-functional Collaboration", "Communication", "Event Coordination", "Content Creation"]
+      group: "Focus Areas",
+      items: ["AI/ML", "Frontend development", "Backend development", "programming fundamentals", "real-world application building"]
     }
   ],
   education: [
     {
-      institution: "Delhi Technical Campus – Guru Gobind Singh Indraprastha University",
-      degree: "Bachelor of Technology in Computer Science and Engineering – CGPA: 7.79/10",
-      dates: "Sep 2024 – Jul 2028",
-      location: "New Delhi, India"
+      institution: "Delhi Technical Campus (GGSIPU)",
+      degree: "B.Tech, Computer Science Engineering",
+      dates: "2024 - 2028"
     },
     {
-      institution: "Kendriya Vidyalaya",
-      degree: "Senior Secondary (XII) – 75% | Secondary (X) – 74%",
-      dates: "2022 | 2024",
-      location: "India"
+      institution: "Kendriya Vidyalaya No.3",
+      degree: "Senior Secondary (12th)",
+      dates: "2024"
+    },
+    {
+      institution: "Kendriya Vidyalaya No.3",
+      degree: "Secondary (10th)",
+      dates: "2022"
     }
   ],
   certifications: [],
   awards: [],
   extra: [
-    "3x Hackathon Finalist: Reached the final rounds of three competitive hackathons, building full stack and AI powered solutions under tight time constraints, demonstrating rapid prototyping and teamwork under pressure.",
-    "Active Competitive Programmer: Regularly participates in online coding contests and algorithm challenges, continuously improving problem solving speed and accuracy across DSA topics.",
-    "AI/ML Community Builder: Core member of AI Renaissance, actively contributing to student awareness and education around artificial intelligence trends and technologies.",
-    "Tech Enthusiast & Lifelong Learner: Continuously explores emerging technologies, frameworks, and engineering best practices; stays current with industry trends to build more impactful software."
+    "Demonstrated ability to architect solutions under pressure through active participation in competitive programming and hackathons.",
+    "Strong advocate for continuous learning, currently expanding expertise in Data Structures, Algorithms, and emerging AI technologies.",
+    "Committed to fostering collaborative environments and driving technical innovation within cross-functional teams."
   ]
 };

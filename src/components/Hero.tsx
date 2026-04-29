@@ -16,7 +16,7 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === 'r' && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        window.open("/My Resume.pdf", "_blank");
+        window.open("/Aditya sharma Resume.pdf", "_blank");
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -103,7 +103,7 @@ export const Hero: React.FC = () => {
               <ChevronDown size={18} />
             </motion.a>
             <motion.a
-              href="/My Resume.pdf"
+              href="/Aditya sharma Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, boxShadow: "0px 0px 30px rgba(168,85,247,0.4)", transition: { type: "spring", stiffness: 400, damping: 17 } }}

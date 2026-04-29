@@ -18,7 +18,7 @@ export const Extra: React.FC = () => {
       </motion.div>
 
       <div className="space-y-4">
-        {resumeData.achievements.map((item, index) => {
+        {resumeData.extra.map((item, index) => {
           const text = typeof item === 'string' ? item : Object.values(item as Record<string, unknown>)
             .filter((value) => typeof value === 'string' && value.trim().length > 0)
             .join(' • ');
