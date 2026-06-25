@@ -106,8 +106,8 @@ export const resumeData = {
   projects: [
     {
       title: "IRCTC Neo",
-      description: "A full-stack reimagining of the Indian Railways platform with a modern UI, built with React 19 and Django REST Framework.",
-      technologies: ["React", "Django"],
+      description: "A full-stack reimagining of the Indian Railways platform with a modern UI, built with React 19, TypeScript, and Django REST Framework.",
+      technologies: ["TypeScript", "React", "Django"],
       github: "https://github.com/adityasharmass12/IRCTC-Neo",
       live: "https://irctc-neo.vercel.app/",
       iconType: "web",
@@ -116,7 +116,7 @@ export const resumeData = {
     {
       title: "adityaaaportdev",
       description: "My personal developer portfolio built to showcase my projects, skills, and experience. Features a modern, responsive design with smooth animations.",
-      technologies: ["React", "Tailwind CSS", "Framer Motion"],
+      technologies: ["TypeScript", "React", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/adityasharmass12/adityaaaaportdev",
       live: "https://adityaaaaportdev.vercel.app/",
       iconType: "web",
