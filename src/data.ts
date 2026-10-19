@@ -20,10 +20,6 @@ export const resumeData = {
         url: "https://www.instagram.com/iadityaaa12/"
       },
       {
-        name: "Video Editing",
-        url: "https://www.instagram.com/unknownfilmsss/"
-      },
-      {
         name: "X",
         url: "https://x.com/adityasharmaa27"
       }
@@ -32,8 +28,15 @@ export const resumeData = {
   experience: [
     {
       company: "AI Renaissance (A.I.R)",
+      role: "President",
+      dates: "September 2026 - Present",
+      location: "",
+      bullets: []
+    },
+    {
+      company: "AI Renaissance (A.I.R)",
       role: "Core Member",
-      dates: "September 2025 - Present (7 months)",
+      dates: "September 2025 - August 2026 (1 year)",
       location: "",
       bullets: []
     },
@@ -54,11 +57,11 @@ export const resumeData = {
       image: "/isro-hackathon.jpg.jpeg"
     },
     {
-      title: "Code Veda 2025 - Online Round",
-      organization: "Geek Room",
-      date: "2025",
-      description: "Secured a place in the online round among 6000+ participants, showcasing technical excellence, perseverance, and innovation.",
-      image: "/code-veda.jpg.jpeg"
+      title: "HackIndia x DTC AI & Web3 Builders Hackathon",
+      organization: "HackIndia & DTC Group of Institutes",
+      date: "September 2026",
+      description: "Proud to have organised the HackIndia x DTC AI & Web3 Builders Hackathon, held on 12–13 September 2026 at DTC Group of Institutes, Greater Noida.",
+      image: "/hackindia-dtc.png"
     },
     {
       title: "CodeCraft: Fullstack Web Development with Flask",
@@ -75,11 +78,11 @@ export const resumeData = {
       image: "/fanuc-visit.jpg.jpeg"
     },
     {
-      title: "IIT Delhi Visit",
-      organization: "Indian Institute of Technology Delhi",
-      date: "2025",
-      description: "Visited the prestigious IIT Delhi campus to explore technological advancements and academic excellence.",
-      image: "/iit-delhi.jpg.jpeg"
+      title: "Artificial Intelligence Fundamentals",
+      organization: "IBM SkillsBuild",
+      date: "June 2026",
+      description: "Successfully completed the Artificial Intelligence Fundamentals course on IBM SkillsBuild and earned the official credential.",
+      image: "/ibm-ai-fundamentals.png"
     },
     {
       title: "OS Code Open source and Ai Conclave event in microsoft",
