@@ -45,9 +45,10 @@
     <meta name="twitter:site" content="@adityasharmaa27" />
     <meta name="twitter:creator" content="@adityasharmaa27" />
 
-    <meta name="theme-color" content="#090414" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#090414" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#020305" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f9fd" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#020305" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="format-detection" content="telephone=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -55,7 +56,27 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Aditya Sharma" />
     <meta name="application-name" content="adityaaaportdev" />
-    <meta name="msapplication-TileColor" content="#090414" />
+    <meta name="msapplication-TileColor" content="#020305" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          var systemLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+          var isDark = saved ? (saved === 'dark') : !systemLight;
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <meta name="msapplication-config" content="none" />
 
     <meta name="geo.region" content="IN-DL" />

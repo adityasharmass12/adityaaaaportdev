@@ -1,7 +1,14 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 export const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
+  const themeRef = useRef(theme);
+
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -24,14 +31,8 @@ export const AnimatedBackground: React.FC = () => {
       mouse.y = -1000;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseout', handleMouseLeave);
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    };
 
     class Particle {
       x: number;
@@ -40,68 +41,122 @@ export const AnimatedBackground: React.FC = () => {
       vy: number;
       radius: number;
 
-      constructor() {
-        this.x = Math.random() * canvasEl.width;
-        this.y = Math.random() * canvasEl.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 1.5 + 0.5;
+      constructor(x?: number, y?: number) {
+        this.x = x ?? Math.random() * canvasEl.width;
+        this.y = y ?? Math.random() * canvasEl.height;
+        this.vx = (Math.random() - 0.5) * 0.45;
+        this.vy = (Math.random() - 0.5) * 0.45;
+        this.radius = Math.random() * 1.2 + 0.6;
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
 
-        // Bounce off walls
-        if (this.x < 0 || this.x > canvasEl.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvasEl.height) this.vy *= -1;
+        // Bounce gently off walls
+        if (this.x < 0) {
+          this.x = 0;
+          this.vx = Math.abs(this.vx);
+        } else if (this.x > canvasEl.width) {
+          this.x = canvasEl.width;
+          this.vx = -Math.abs(this.vx);
+        }
 
-        // Keep in bounds
-        this.x = Math.max(0, Math.min(canvasEl.width, this.x));
-        this.y = Math.max(0, Math.min(canvasEl.height, this.y));
+        if (this.y < 0) {
+          this.y = 0;
+          this.vy = Math.abs(this.vy);
+        } else if (this.y > canvasEl.height) {
+          this.y = canvasEl.height;
+          this.vy = -Math.abs(this.vy);
+        }
 
-        // Mouse attraction - faster and smoother
+        // Gentle mouse interaction without aggressive clustering
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 250; // Increased from ~150 for better reach
+        const maxDistance = 140;
 
         if (distance < maxDistance && distance > 0) {
-          const force = (maxDistance - distance) / maxDistance;
-          this.x += (dx / distance) * force * 4.5; // Increased from 2 for faster response
-          this.y += (dy / distance) * force * 4.5;
+          const force = ((maxDistance - distance) / maxDistance) * 0.7;
+          this.x += (dx / distance) * force;
+          this.y += (dy / distance) * force;
         }
       }
 
-      draw() {
+      draw(isDark: boolean) {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(192, 132, 252, 0.5)';
+        ctx.fillStyle = isDark ? 'rgba(147, 197, 253, 0.32)' : 'rgba(37, 99, 235, 0.18)';
         ctx.fill();
       }
     }
 
     const initParticles = () => {
       particles = [];
-      const particleCount = window.innerWidth < 768 ? 40 : 100;
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+      const particleCount = window.innerWidth < 768 ? 28 : 65;
+      const cols = Math.ceil(Math.sqrt(particleCount * (canvasEl.width / (canvasEl.height || 1))));
+      const rows = Math.ceil(particleCount / cols);
+      const cellW = canvasEl.width / cols;
+      const cellH = canvasEl.height / rows;
+
+      let created = 0;
+      for (let r = 0; r < rows && created < particleCount; r++) {
+        for (let c = 0; c < cols && created < particleCount; c++) {
+          const px = c * cellW + Math.random() * cellW;
+          const py = r * cellH + Math.random() * cellH;
+          particles.push(new Particle(px, py));
+          created++;
+        }
       }
     };
 
-    const drawLines = () => {
+    const applySoftRepulsion = () => {
+      const minDist = 45;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) {
+          if (dist < minDist && dist > 0) {
+            const push = ((minDist - dist) / minDist) * 0.35;
+            const nx = dx / dist;
+            const ny = dy / dist;
+            particles[i].x += nx * push;
+            particles[i].y += ny * push;
+            particles[j].x -= nx * push;
+            particles[j].y -= ny * push;
+          }
+        }
+      }
+    };
+
+    const drawLines = (isDark: boolean) => {
+      const lineCounts = new Uint8Array(particles.length);
+      const maxLines = 3;
+      const maxDist = 95;
+
+      for (let i = 0; i < particles.length; i++) {
+        if (lineCounts[i] >= maxLines) continue;
+
+        for (let j = i + 1; j < particles.length; j++) {
+          if (lineCounts[j] >= maxLines) continue;
+
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxDist) {
+            lineCounts[i]++;
+            lineCounts[j]++;
+
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(192, 132, 252, ${0.15 - distance / 800})`;
+            ctx.strokeStyle = isDark
+              ? `rgba(59, 130, 246, ${Math.max(0, 0.16 - (dist / maxDist) * 0.14)})`
+              : `rgba(37, 99, 235, ${Math.max(0, 0.10 - (dist / maxDist) * 0.08)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -109,28 +164,66 @@ export const AnimatedBackground: React.FC = () => {
       }
     };
 
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isDark = themeRef.current === 'dark';
 
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#1a0b2e');
-      gradient.addColorStop(1, '#090414');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (isDark) {
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#070b14');
+        gradient.addColorStop(0.5, '#05080f');
+        gradient.addColorStop(1, '#020305');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      } else {
+        ctx.fillStyle = '#eef2f9';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const radTR = ctx.createRadialGradient(
+          canvas.width * 0.85, canvas.height * 0.12, 0,
+          canvas.width * 0.85, canvas.height * 0.12, Math.max(canvas.width * 0.6, 500)
+        );
+        radTR.addColorStop(0, 'rgba(37, 99, 235, 0.08)');
+        radTR.addColorStop(1, 'rgba(37, 99, 235, 0)');
+        ctx.fillStyle = radTR;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const radBL = ctx.createRadialGradient(
+          canvas.width * 0.15, canvas.height * 0.88, 0,
+          canvas.width * 0.15, canvas.height * 0.88, Math.max(canvas.width * 0.6, 500)
+        );
+        radBL.addColorStop(0, 'rgba(56, 189, 248, 0.07)');
+        radBL.addColorStop(1, 'rgba(56, 189, 248, 0)');
+        ctx.fillStyle = radBL;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
 
       if (mouse.x !== -1000 && mouse.y !== -1000) {
-        const glowGradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 400);
-        glowGradient.addColorStop(0, 'rgba(168, 85, 247, 0.15)');
-        glowGradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
+        const glowGradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 350);
+        if (isDark) {
+          glowGradient.addColorStop(0, 'rgba(59, 130, 246, 0.08)');
+          glowGradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+        } else {
+          glowGradient.addColorStop(0, 'rgba(37, 99, 235, 0.04)');
+          glowGradient.addColorStop(1, 'rgba(37, 99, 235, 0)');
+        }
         ctx.fillStyle = glowGradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
 
+      applySoftRepulsion();
+
       particles.forEach(p => {
         p.update();
-        p.draw();
+        p.draw(isDark);
       });
-      drawLines();
+      drawLines(isDark);
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -150,8 +243,8 @@ export const AnimatedBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-[-1]"
-      style={{ background: '#090414' }}
+      className="fixed inset-0 w-full h-full pointer-events-none z-[-1] transition-colors duration-300"
+      style={{ background: theme === 'dark' ? '#020305' : '#eef2f9' }}
     />
   );
 };

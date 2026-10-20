@@ -10,7 +10,7 @@ interface SpotlightCardProps extends HTMLMotionProps<"div"> {
 export const SpotlightCard: React.FC<SpotlightCardProps> = ({ 
   children, 
   className = "", 
-  spotlightColor = "rgba(168, 85, 247, 0.15)", 
+  spotlightColor = "rgba(59, 130, 246, 0.15)", 
   ...props 
 }) => {
   const divRef = useRef<HTMLDivElement>(null);

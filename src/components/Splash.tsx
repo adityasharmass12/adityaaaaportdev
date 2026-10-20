@@ -31,7 +31,7 @@ export const Splash: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-start justify-end bg-[#090414] p-8 font-mono text-sm sm:text-base"
+      className="fixed inset-0 z-50 flex flex-col items-start justify-end bg-[#020305] p-8 font-mono text-sm sm:text-base"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -51,7 +51,7 @@ export const Splash: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
           <motion.div
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
-            className="w-3 h-5 bg-purple-400 mt-2"
+            className="w-3 h-5 bg-blue-400 mt-2"
           />
       </div>
     </motion.div>

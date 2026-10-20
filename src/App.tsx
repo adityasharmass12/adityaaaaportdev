@@ -35,20 +35,26 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen text-slate-50 selection:bg-purple-500/30 relative">
+    <div className="min-h-screen text-[var(--foreground)] selection:bg-blue-600/30 relative">
       <SEOHead />
       <CommandPalette />
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-400 to-fuchsia-400 origin-left z-[100]"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-600 via-sky-400 to-blue-500 origin-left z-[100]"
         style={{ scaleX }}
       />
       <CustomCursor />
       <AnimatedBackground />
-      <div className="fixed inset-[-24px] z-[-1] bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none animate-grid"></div>
-      <div className="fixed top-4 left-4 text-purple-500/10 font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;html&gt;</div>
-      <div className="fixed top-12 left-8 text-purple-500/10 font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;body&gt;</div>
-      <div className="fixed bottom-12 left-8 text-purple-500/10 font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;/body&gt;</div>
-      <div className="fixed bottom-4 left-4 text-purple-500/10 font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;/html&gt;</div>
+      <div 
+        className="fixed inset-[-24px] z-[-1] pointer-events-none animate-grid"
+        style={{
+          backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }}
+      />
+      <div className="fixed top-4 left-4 text-[var(--code-tag)] font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;html&gt;</div>
+      <div className="fixed top-12 left-8 text-[var(--code-tag)] font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;body&gt;</div>
+      <div className="fixed bottom-12 left-8 text-[var(--code-tag)] font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;/body&gt;</div>
+      <div className="fixed bottom-4 left-4 text-[var(--code-tag)] font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;/html&gt;</div>
 
       <AnimatePresence>
         {showSplash && <Splash onComplete={() => setShowSplash(false)} />}
@@ -71,14 +77,14 @@ export default function App() {
           <Contact />
           </article>
 
-          <footer role="contentinfo" className="py-12 text-center text-purple-300/50 border-t border-purple-500/20 mt-24 flex flex-col gap-2 bg-purple-900/10 backdrop-blur-xl">
+          <footer role="contentinfo" className="py-12 text-center text-[#64748b] dark:text-[#7585a8] border-t border-[rgba(15,23,42,0.10)] dark:border-blue-500/14 mt-24 flex flex-col gap-2 bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl shadow-[0_-4px_20px_rgba(15,23,42,0.03)]">
             <p>© {new Date().getFullYear()} adityaaaportdev | Aditya Sharma. All rights reserved.</p>
-            <p className="text-emerald-400 font-medium tracking-wide">Designed and Built by Aditya Sharma</p>
-            <nav aria-label="Footer navigation" className="flex justify-center gap-4 mt-4 text-sm text-purple-400/60">
-              <a href="#home" className="hover:text-purple-300 transition-colors">Home</a>
-              <a href="#about" className="hover:text-purple-300 transition-colors">About</a>
-              <a href="#projects" className="hover:text-purple-300 transition-colors">Projects</a>
-              <a href="#contact" className="hover:text-purple-300 transition-colors">Contact</a>
+            <p className="text-blue-600 dark:text-sky-400 font-medium tracking-wide">Designed and Built by Aditya Sharma</p>
+            <nav aria-label="Footer navigation" className="flex justify-center gap-4 mt-4 text-sm text-[#334155] dark:text-blue-300/60">
+              <a href="#home" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Home</a>
+              <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">About</a>
+              <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Projects</a>
+              <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Contact</a>
             </nav>
           </footer>
 
@@ -89,7 +95,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20, scale: 0.8 }}
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="fixed bottom-8 right-8 p-3 bg-purple-900/80 backdrop-blur-2xl text-white rounded-full shadow-[0_0_30px_rgba(147,51,234,0.5)] z-50 hover:bg-purple-800 transition-colors border border-purple-400/40"
+                className="fixed bottom-8 right-8 p-3 bg-white dark:bg-[rgba(8,12,22,0.85)] dark:backdrop-blur-2xl text-blue-600 dark:text-blue-300 rounded-full shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_0_20px_rgba(59,130,246,0.2)] z-50 hover:bg-[#f1f5fb] dark:hover:bg-[rgba(15,27,61,0.85)] transition-colors border border-[rgba(15,23,42,0.10)] dark:border-blue-500/20 cursor-pointer"
               >
                 <ArrowUp size={20} />
               </motion.button>

@@ -3,6 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
@@ -10,6 +12,78 @@
 
 :root {
   --font-heading: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+
+  /* Theme tokens - Light Mode (Cool #eef2f9 base, solid #ffffff cards) */
+  --background: #eef2f9;
+  --background-subtle: #e5ebf5;
+  --background-navy: #0a1633;
+
+  --foreground: #0a1633;
+  --foreground-muted: #334155;
+  --foreground-subtle: #64748b;
+
+  --heading: #0a1633;
+  --heading-gradient-from: #0a1633;
+  --heading-gradient-to: #1d4ed8;
+
+  --accent: #2563eb;
+  --accent-secondary: #3b82f6;
+  --accent-cyan: #0284c7;
+  --accent-glow: rgba(37, 99, 235, 0.18);
+
+  --card-bg: #ffffff;
+  --card-border: rgba(15, 23, 42, 0.10);
+  --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 20px rgba(15, 23, 42, 0.08), 0 16px 40px rgba(37, 99, 235, 0.08);
+  --card-hover-border: rgba(37, 99, 235, 0.35);
+  --card-hover-shadow: 0 12px 32px rgba(37, 99, 235, 0.18);
+
+  --nav-bg: #ffffff;
+  --nav-border: rgba(15, 23, 42, 0.10);
+  --nav-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 20px rgba(15, 23, 42, 0.08), 0 16px 40px rgba(37, 99, 235, 0.08);
+
+  --chip-bg: #f1f5fb;
+  --chip-border: rgba(15, 23, 42, 0.08);
+  --chip-text: #1d4ed8;
+
+  --grid-line: rgba(37, 99, 235, 0.03);
+  --code-tag: rgba(37, 99, 235, 0.18);
+}
+
+.dark {
+  /* Theme tokens - Dark Mode (Pure blackish #020305, faint blue tint) */
+  --background: #020305;
+  --background-subtle: #05080f;
+  --background-navy: #070b14;
+
+  --foreground: #f5f8ff;
+  --foreground-muted: #a3b0cc;
+  --foreground-subtle: #7585a8;
+
+  --heading: #dbe7ff;
+  --heading-gradient-from: #dbe7ff;
+  --heading-gradient-to: #93c5fd;
+
+  --accent: #2563eb;
+  --accent-secondary: #3b82f6;
+  --accent-cyan: #38bdf8;
+  --accent-glow: rgba(59, 130, 246, 0.20);
+
+  --card-bg: rgba(8, 12, 22, 0.7);
+  --card-border: rgba(59, 130, 246, 0.14);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  --card-hover-border: rgba(59, 130, 246, 0.28);
+  --card-hover-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.75);
+
+  --nav-bg: rgba(8, 12, 22, 0.7);
+  --nav-border: rgba(59, 130, 246, 0.14);
+  --nav-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+
+  --chip-bg: rgba(56, 189, 248, 0.08);
+  --chip-border: rgba(56, 189, 248, 0.20);
+  --chip-text: #38bdf8;
+
+  --grid-line: rgba(59, 130, 246, 0.03);
+  --code-tag: rgba(147, 197, 253, 0.12);
 }
 
 .font-heading {
@@ -22,6 +96,19 @@
   letter-spacing: -0.02em;
   line-height: 1.1;
   font-size: clamp(1.9rem, 4.5vw, 3rem);
+  color: var(--heading);
+}
+
+.heading-gradient {
+  background: linear-gradient(to right, #0a1633, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .heading-gradient {
+  background: linear-gradient(to right, #dbe7ff, #93c5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .section-subheading {
@@ -35,9 +122,43 @@ html {
   scroll-behavior: smooth;
 }
 
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease, box-shadow 250ms ease !important;
+  transition-delay: 0s !important;
+}
+
 body {
-  background-color: #090414;
-  color: #f8fafc;
+  background-color: var(--background);
+  color: var(--foreground-muted);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.22);
+  color: #0a1633;
+}
+
+.dark ::selection {
+  background: rgba(59, 130, 246, 0.30);
+  color: #f5f8ff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.45);
 }
 
 @keyframes gradient {

@@ -23,7 +23,6 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
-  // Click-and-drag mouse scroll states
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
   const dragScrollLeft = useRef(0);
@@ -35,10 +34,9 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth - 1);
 
-      // Active card index calculation
       const card = scrollRef.current.firstElementChild as HTMLElement;
       if (card) {
-        const cardWidth = card.offsetWidth + 24; // card width + gap
+        const cardWidth = card.offsetWidth + 24;
         const index = Math.round(scrollLeft / cardWidth);
         setActiveIndex(Math.max(0, Math.min(projects.length - 1, index)));
       }
@@ -55,7 +53,6 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
     if (scrollRef.current) {
       const { clientWidth } = scrollRef.current;
       const card = scrollRef.current.firstElementChild as HTMLElement;
-      // 24px is the gap (gap-6)
       const cardWidth = card ? card.offsetWidth + 24 : clientWidth * 0.8;
       const amount = direction === 'left' ? -cardWidth : cardWidth;
       scrollRef.current.scrollBy({ left: amount, behavior: 'smooth' });
@@ -63,7 +60,6 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
     }
   };
 
-  // Drag-to-scroll mouse handlers
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     const container = scrollRef.current;
     if (!container) return;
@@ -72,7 +68,6 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
     dragScrollLeft.current = container.scrollLeft;
     dragMoved.current = false;
     
-    // Disable native scroll snapping/smooth scroll during mouse drag
     container.style.scrollSnapType = 'none';
     container.style.scrollBehavior = 'auto';
   };
@@ -83,7 +78,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
     if (!container) return;
     e.preventDefault();
     const x = e.pageX - container.offsetLeft;
-    const walk = (x - dragStartX.current) * 1.5; // multiplier for drag speed
+    const walk = (x - dragStartX.current) * 1.5;
     if (Math.abs(walk) > 5) {
       dragMoved.current = true;
     }
@@ -97,25 +92,17 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
     const container = scrollRef.current;
     if (!container) return;
     
-    // Re-enable scroll snap and smooth scrolling
     container.style.scrollSnapType = 'x mandatory';
     container.style.scrollBehavior = 'smooth';
-    
-    // Force a scroll boundary snap
-    const currentScroll = container.scrollLeft;
-    container.scrollLeft = currentScroll;
-    checkScroll();
   };
 
-  const handleCaptureClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleCaptureClick = (e: React.MouseEvent) => {
     if (dragMoved.current) {
       e.preventDefault();
       e.stopPropagation();
-      dragMoved.current = false;
     }
   };
 
-  // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
@@ -126,11 +113,9 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
     }
   };
 
-  if (!projects || projects.length === 0) return null;
-
   return (
     <section id="projects" aria-label="Featured Projects" className="py-16 px-6 max-w-6xl mx-auto relative">
-      <div className="border border-purple-500/30 bg-purple-900/10 backdrop-blur-2xl rounded-[2rem] p-8 sm:p-10 shadow-[0_8px_32px_0_rgba(139,92,246,0.1)] relative">
+      <div className="border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(8,12,22,0.7)] backdrop-blur-2xl rounded-[2rem] p-8 sm:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_8px_24px_rgba(37,99,235,0.10)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -138,9 +123,9 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <h2 className="section-heading text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 flex items-center">
+          <h2 className="section-heading heading-gradient flex items-center">
             Projects
-            <span className="inline-flex items-center justify-center ml-2.5 px-2 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-mono leading-none">
+            <span className="inline-flex items-center justify-center ml-2.5 px-2 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-600 dark:text-sky-400 text-xs font-mono leading-none">
               /&gt;
             </span>
           </h2>
@@ -151,7 +136,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className={`absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-purple-900/80 border border-purple-500/30 text-purple-200 backdrop-blur-xl shadow-lg transition-all duration-300 active:scale-95 ${!canScrollLeft ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-purple-800/90'}`}
+            className={`absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-[rgba(8,12,22,0.9)] border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] text-[#0a1633] dark:text-[#dbe7ff] shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] transition-all duration-300 active:scale-95 cursor-pointer ${!canScrollLeft ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-[#f1f5fb] dark:hover:bg-blue-500/20'}`}
             aria-label="Scroll Left"
           >
             <ChevronLeft size={24} />
@@ -168,7 +153,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
             onClickCapture={handleCaptureClick}
             onKeyDown={handleKeyDown}
             tabIndex={0}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-10 pt-4 cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 rounded-2xl select-none"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-10 pt-4 cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl select-none"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -196,15 +181,14 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                   }}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
-                  className="flex-none w-[85vw] sm:w-[340px] md:w-[360px] h-[450px] snap-start bg-purple-900/40 backdrop-blur-xl border border-purple-500/30 rounded-2xl group/card hover:border-purple-400/50 shadow-[0_8px_32px_rgba(168,85,247,0.15)] hover:shadow-[0_12px_40px_rgba(168,85,247,0.3)] transition-all duration-300 relative flex flex-col justify-between cursor-default overflow-hidden"
+                  className="flex-none w-[85vw] sm:w-[340px] md:w-[360px] h-[450px] snap-start bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl group/card hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-all duration-300 relative flex flex-col justify-between cursor-default overflow-hidden"
                 >
-                  {/* Top content wrapper to group Image + Title + Description */}
+                  {/* Top content wrapper */}
                   <div className="flex flex-col flex-grow">
-                    {/* Image Container (Glass Frame) - rounded top corners only, flush to top/sides */}
-                    <div className="relative w-full aspect-[16/10] bg-purple-900/40 border-b border-purple-500/30 overflow-hidden shrink-0 z-10">
+                    <div className="relative w-full aspect-[16/10] bg-slate-100 dark:bg-slate-900/50 border-b border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] overflow-hidden shrink-0 z-10">
                       {project.image ? (
                         <a href={project.live || '#'} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer relative overflow-hidden">
-                          <div className="absolute inset-0 bg-purple-900/20 group-hover/card:bg-transparent transition-colors z-10 pointer-events-none" />
+                          <div className="absolute inset-0 bg-blue-600/5 group-hover/card:bg-transparent transition-colors z-10 pointer-events-none" />
                           <img
                             src={project.image}
                             alt={project.title}
@@ -212,43 +196,40 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                           />
                         </a>
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-purple-300/50 font-mono text-sm bg-purple-900/20">
+                        <div className="w-full h-full flex items-center justify-center text-slate-400 dark:text-blue-300/50 font-mono text-sm bg-slate-100 dark:bg-blue-950/20">
                           No image available
                         </div>
                       )}
                     </div>
 
-                    {/* Inner Content Padding */}
                     <div className="p-5 flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-3 gap-3">
-                        <a href={project.live || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-300 transition-colors">
-                          <h3 className="section-subheading text-lg text-purple-100 tracking-tight leading-tight group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-purple-300 group-hover/card:to-fuchsia-300 transition-all">
+                        <a href={project.live || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-sky-300 transition-colors">
+                          <h3 className="section-subheading text-lg text-[#0a1633] dark:text-[#dbe7ff] tracking-tight leading-tight group-hover/card:text-blue-600 dark:group-hover/card:text-sky-300 transition-all">
                             {project.title}
                           </h3>
                         </a>
                         {project.technologies && project.technologies.length > 0 && (
-                          <span className="px-2.5 py-0.5 bg-teal-500/10 border border-teal-500/20 rounded-full text-[10px] sm:text-xs font-mono text-teal-300 capitalize tracking-wide shrink-0 whitespace-nowrap shadow-sm">
+                          <span className="px-2.5 py-0.5 bg-[#f1f5fb] dark:bg-sky-500/10 border border-[rgba(15,23,42,0.08)] dark:border-sky-500/20 rounded-full text-[10px] sm:text-xs font-mono text-[#1d4ed8] dark:text-sky-400 capitalize tracking-wide shrink-0 whitespace-nowrap shadow-xs">
                             {project.technologies[0]}
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-purple-200/80 line-clamp-2 leading-relaxed mb-4">
+                      <p className="text-sm text-[#334155] dark:text-[#a3b0cc] line-clamp-2 leading-relaxed mb-4">
                         {project.description}
                       </p>
                     </div>
                   </div>
 
-                  {/* Inner subtle gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-30 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-30 pointer-events-none" />
 
-                  {/* Bottom Action Row (Live Demo + GitHub buttons) */}
                   <div className="px-5 pb-5 pt-0 flex gap-3 z-10 shrink-0">
                     {project.live && (
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-purple-200 hover:text-white transition-all duration-200 rounded-full border border-purple-400/20 bg-purple-900/40 hover:bg-purple-800/50 backdrop-blur-xl shadow-sm hover:shadow-[0_4px_12px_rgba(168,85,247,0.2)] flex-1"
+                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#1d4ed8] dark:text-blue-200 hover:text-blue-700 dark:hover:text-white transition-all duration-200 rounded-full border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] hover:bg-[#e6eef9] hover:border-[rgba(37,99,235,0.35)] dark:hover:bg-blue-500/20 shadow-xs flex-1 cursor-pointer"
                       >
                         <ExternalLink size={14} />
                         Live Demo
@@ -259,7 +240,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-purple-200 hover:text-white transition-all duration-200 rounded-full border border-purple-400/20 bg-purple-900/40 hover:bg-purple-800/50 backdrop-blur-xl shadow-sm hover:shadow-[0_4px_12px_rgba(168,85,247,0.2)] flex-1"
+                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#1d4ed8] dark:text-blue-200 hover:text-blue-700 dark:hover:text-white transition-all duration-200 rounded-full border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] hover:bg-[#e6eef9] hover:border-[rgba(37,99,235,0.35)] dark:hover:bg-blue-500/20 shadow-xs flex-1 cursor-pointer"
                       >
                         <Github size={14} />
                         GitHub
@@ -275,7 +256,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className={`absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-purple-900/80 border border-purple-500/30 text-purple-200 backdrop-blur-xl shadow-lg transition-all duration-300 active:scale-95 ${!canScrollRight ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-purple-800/90'}`}
+            className={`absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-[rgba(8,12,22,0.9)] border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] text-[#0a1633] dark:text-[#dbe7ff] shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] transition-all duration-300 active:scale-95 cursor-pointer ${!canScrollRight ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-[#f1f5fb] dark:hover:bg-blue-500/20'}`}
             aria-label="Scroll Right"
           >
             <ChevronRight size={24} />
@@ -294,7 +275,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                   scrollRef.current.scrollTo({ left: idx * cardWidth, behavior: 'smooth' });
                 }
               }}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${activeIndex === idx ? 'bg-gradient-to-r from-teal-400 to-emerald-400 scale-125 shadow-[0_0_8px_rgba(45,212,191,0.6)]' : 'bg-purple-300/20 hover:bg-purple-300/40'}`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${activeIndex === idx ? 'bg-gradient-to-r from-blue-600 to-sky-400 scale-125 shadow-[0_0_8px_rgba(59,130,246,0.6)]' : 'bg-slate-300 dark:bg-blue-300/20 hover:bg-slate-400 dark:hover:bg-blue-300/40'}`}
               aria-label={`Go to project ${idx + 1}`}
             />
           ))}
