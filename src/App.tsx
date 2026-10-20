@@ -11,6 +11,7 @@ import { Projects } from './components/Projects';
 import { Achievements } from './components/Achievements';
 import { Extra } from './components/Extra';
 import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 import { SEOHead } from './components/SEOHead';
 import { CommandPalette } from './components/CommandPalette';
@@ -77,16 +78,7 @@ export default function App() {
           <Contact />
           </article>
 
-          <footer role="contentinfo" className="py-12 text-center text-[#64748b] dark:text-[#7585a8] border-t border-[rgba(15,23,42,0.10)] dark:border-blue-500/14 mt-24 flex flex-col gap-2 bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl shadow-[0_-4px_20px_rgba(15,23,42,0.03)]">
-            <p>© {new Date().getFullYear()} adityaaaportdev | Aditya Sharma. All rights reserved.</p>
-            <p className="text-blue-600 dark:text-sky-400 font-medium tracking-wide">Designed and Built by Aditya Sharma</p>
-            <nav aria-label="Footer navigation" className="flex justify-center gap-4 mt-4 text-sm text-[#334155] dark:text-blue-300/60">
-              <a href="#home" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Home</a>
-              <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">About</a>
-              <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Projects</a>
-              <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Contact</a>
-            </nav>
-          </footer>
+          <Footer />
 
           <AnimatePresence>
             {showBackToTop && (

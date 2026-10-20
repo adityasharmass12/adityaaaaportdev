@@ -186,3 +186,19 @@ body {
     cursor: none !important;
   }
 }
+
+@keyframes footerGridScroll {
+  from { background-position-y: 0; }
+  to { background-position-y: 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-grid-floor {
+    animation: none !important;
+  }
+}
+
+.group:hover .group-hover\:footer-glow {
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.35);
+  transform: translateY(-3px);
+}
