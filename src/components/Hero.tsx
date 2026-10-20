@@ -1,27 +1,99 @@
-import React, { useEffect } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { resumeData } from '../data';
-import { Download, ChevronDown, Github, Linkedin, Instagram, Terminal } from 'lucide-react';
+import { Download, ChevronDown } from 'lucide-react';
 
-const getIcon = (name: string) => {
-  switch (name.toLowerCase()) {
-    case 'github': return <Github size={24} />;
-    case 'linkedin': return <Linkedin size={24} />;
-    case 'instagram': return <Instagram size={24} />;
-    default: return null;
-  }
-};
+const FIRST_NAME = 'Aditya'.split('');
+const LAST_NAME = 'Sharma'.split('');
 
 export const Hero: React.FC = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hasEntered, setHasEntered] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setHasEntered(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === 'r' && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        window.open("/Aditya_Sharma_Resume.pdf", "_blank");
+        window.open('/Aditya_Sharma_Resume.pdf', '_blank');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  const renderLetter = (char: string, index: number) => {
+    const isHovered = hoveredIndex === index;
+    const isNeighbour =
+      !shouldReduceMotion &&
+      hoveredIndex !== null &&
+      Math.abs(hoveredIndex - index) === 1;
+
+    const y = shouldReduceMotion ? 0 : isHovered ? -10 : isNeighbour ? -4 : 0;
+    const scale = shouldReduceMotion ? 1 : isHovered ? 1.08 : 1;
+    const color = isHovered ? '#c4b5fd' : '#f5f3ff';
+    const textShadow = isHovered ? '0 0 20px rgba(168, 85, 247, 0.45)' : 'none';
+    const fontFamily = isHovered
+      ? "'Inter', sans-serif"
+      : "'Instrument Serif', 'Playfair Display', Georgia, serif";
+    const fontStyle = isHovered ? 'normal' : 'italic';
+    const fontWeight = isHovered ? 700 : 400;
+
+    return (
+      <motion.span
+        key={index}
+        onMouseEnter={() => setHoveredIndex(index)}
+        onMouseLeave={() => setHoveredIndex(null)}
+        initial={
+          shouldReduceMotion
+            ? { opacity: 1, y: 0, filter: 'blur(0px)' }
+            : { opacity: 0, y: 40, filter: 'blur(8px)' }
+        }
+        animate={{
+          opacity: 1,
+          filter: 'blur(0px)',
+          y,
+          scale,
+          color,
+          textShadow,
+        }}
+        transition={
+          !hasEntered && !shouldReduceMotion
+            ? { duration: 0.5, delay: 0.1 + index * 0.04, ease: 'easeOut' }
+            : isHovered
+            ? { type: 'spring', stiffness: 300, damping: 18 }
+            : { duration: 0.4, ease: 'easeOut' }
+        }
+        whileTap={
+          shouldReduceMotion
+            ? { color: '#c4b5fd' }
+            : {
+                scale: 1.08,
+                y: -10,
+                rotate: [-4, 4, 0],
+                color: '#c4b5fd',
+                transition: { duration: 0.3 },
+              }
+        }
+        className="inline-block cursor-pointer select-none"
+        style={{
+          fontFamily,
+          fontStyle,
+          fontWeight,
+          WebkitTextStroke: isHovered ? 'none' : '0.04em currentColor',
+          paintOrder: 'stroke fill',
+          willChange: 'transform',
+          transformOrigin: 'bottom center',
+        }}
+      >
+        {char}
+      </motion.span>
+    );
+  };
 
   return (
     <section id="home" aria-label="Hero — Aditya Sharma" className="relative flex items-center justify-center min-h-screen px-6 pt-28 sm:pt-32 overflow-hidden">
@@ -43,49 +115,58 @@ export const Hero: React.FC = () => {
           </motion.div>
 
           <motion.h1 
-            className="mb-4 text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-fuchsia-300 to-purple-300 font-display sm:text-7xl lg:text-8xl inline-block cursor-default animate-gradient"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ 
-              scale: 1.1,
-              y: -8,
-              filter: [
-                "drop-shadow(0px 15px 30px rgba(168,85,247,0.6)) hue-rotate(0deg)",
-                "drop-shadow(0px 15px 30px rgba(217,70,239,0.6)) hue-rotate(90deg)",
-                "drop-shadow(0px 15px 30px rgba(168,85,247,0.6)) hue-rotate(180deg)",
-                "drop-shadow(0px 15px 30px rgba(217,70,239,0.6)) hue-rotate(270deg)",
-                "drop-shadow(0px 15px 30px rgba(168,85,247,0.6)) hue-rotate(360deg)"
-              ],
-              transition: { 
-                scale: { type: "spring", stiffness: 400, damping: 15 },
-                y: { type: "spring", stiffness: 400, damping: 15 },
-                filter: { duration: 2.5, repeat: Infinity, ease: "linear" }
-              }
+            aria-label="Aditya Sharma"
+            className="mb-4 text-left cursor-default block"
+            style={{
+              fontFamily: "'Instrument Serif', 'Playfair Display', Georgia, serif",
+              fontSize: 'clamp(3rem, 8vw, 6.5rem)',
+              lineHeight: 1,
+              letterSpacing: '-0.02em',
+              color: '#f5f3ff',
+              fontStyle: 'italic',
+              fontWeight: 400,
+              WebkitTextStroke: '0.04em #f5f3ff',
+              paintOrder: 'stroke fill',
+              background: 'none',
+              WebkitTextFillColor: 'initial',
+              textShadow: 'none',
+              filter: 'none',
             }}
           >
-            {resumeData.basics.name}
+            <span aria-hidden="true" className="inline-block">
+              <span className="inline-block whitespace-nowrap">
+                {FIRST_NAME.map((char, i) => renderLetter(char, i))}
+              </span>
+              <span className="inline-block w-[0.28em]">&nbsp;</span>
+              <span className="inline-block whitespace-nowrap">
+                {LAST_NAME.map((char, i) => renderLetter(char, FIRST_NAME.length + 1 + i))}
+              </span>
+            </span>
           </motion.h1>
+
           <meta itemProp="name" content="Aditya Sharma" />
           <meta itemProp="url" content="https://adityaaaaportdev.vercel.app/" />
           <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress" className="hidden">
             <meta itemProp="addressLocality" content="Delhi" />
             <meta itemProp="addressCountry" content="IN" />
           </span>
-          
-          <motion.div 
-            className="mb-12 flex items-center text-xl font-medium text-purple-200 sm:text-3xl font-display"
-            initial={{ opacity: 0, y: 20 }}
+
+          <motion.p 
+            className="mb-10 font-normal text-left"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              color: '#9a93ad',
+              fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
+              maxWidth: '32rem',
+              lineHeight: 1.6,
+            }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            itemProp="jobTitle"
           >
-            <span itemProp="jobTitle">{resumeData.basics.title}</span>
-            <motion.span
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-block w-3 sm:w-4 h-6 sm:h-8 ml-2 bg-purple-400/80"
-            />
-          </motion.div>
+            {resumeData.basics.title}
+          </motion.p>
 
           <motion.div
             className="flex flex-col sm:flex-row gap-4"

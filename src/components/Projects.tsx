@@ -138,7 +138,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 font-display sm:text-4xl flex items-center">
+          <h2 className="section-heading text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 flex items-center">
             Projects
             <span className="inline-flex items-center justify-center ml-2.5 px-2 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-mono leading-none">
               /&gt;
@@ -222,7 +222,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                     <div className="p-5 flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-3 gap-3">
                         <a href={project.live || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-300 transition-colors">
-                          <h3 className="text-lg font-semibold text-purple-100 tracking-tight leading-tight group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-purple-300 group-hover/card:to-fuchsia-300 transition-all font-display">
+                          <h3 className="section-subheading text-lg text-purple-100 tracking-tight leading-tight group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-purple-300 group-hover/card:to-fuchsia-300 transition-all">
                             {project.title}
                           </h3>
                         </a>

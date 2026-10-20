@@ -13,7 +13,7 @@ export const Achievements: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="mb-12 text-center"
       >
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 font-display sm:text-4xl mb-4">
+        <h2 className="section-heading text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 mb-4">
           <span className="text-purple-500/50 font-mono text-2xl sm:text-3xl mr-2">&lt;</span>
           Achievements
           <span className="text-purple-500/50 font-mono text-2xl sm:text-3xl ml-2">/&gt;</span>
@@ -59,7 +59,7 @@ export const Achievements: React.FC = () => {
               </div>
 
               <div className="mt-4 flex flex-col flex-grow px-2">
-                <h3 className="text-base font-bold text-purple-100 leading-tight mb-1 sm:line-clamp-2 group-hover:text-fuchsia-300">{item.title}</h3>
+                <h3 className="section-subheading text-base text-purple-100 leading-tight mb-1 sm:line-clamp-2 group-hover:text-fuchsia-300">{item.title}</h3>
                 <p className="text-xs font-medium text-purple-300/80 mb-3 sm:line-clamp-1">{item.organization}</p>
                 <p className="text-[12px] sm:text-[11px] text-purple-200/80 leading-relaxed sm:line-clamp-3 mt-auto">
                   {item.description}

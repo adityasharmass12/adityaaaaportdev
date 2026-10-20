@@ -35,7 +35,7 @@ export const Contact: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="mb-10 text-center"
       >
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 font-display sm:text-4xl mb-4">Connect With Me</h2>
+        <h2 className="section-heading text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 mb-4">Connect With Me</h2>
         <div className="w-24 h-1 bg-purple-500/30 mx-auto rounded-full" />
       </motion.div>
 

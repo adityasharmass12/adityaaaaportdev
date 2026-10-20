@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <a href="#home" className="group flex items-center gap-2.5 text-sm sm:text-base font-medium text-purple-200/90 tracking-wide font-display hover:text-white transition-colors">
+          <a href="#home" className="group flex items-center gap-2.5 text-sm sm:text-base font-medium text-purple-200/90 tracking-wide hover:text-white transition-colors">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-fuchsia-500"></span>

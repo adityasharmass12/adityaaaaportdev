@@ -14,7 +14,7 @@ export const Education: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="mb-10 text-center"
       >
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 font-display sm:text-4xl mb-4">Education</h2>
+        <h2 className="section-heading text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 mb-4">Education</h2>
         <div className="w-24 h-1 bg-purple-500/30 mx-auto rounded-full" />
       </motion.div>
 
@@ -38,7 +38,7 @@ export const Education: React.FC = () => {
                     <GraduationCap size={24} />
                   </motion.div>
                   <div>
-                    <h3 className="text-xl font-semibold text-purple-100">{edu.institution}</h3>
+                    <h3 className="section-subheading text-xl text-purple-100">{edu.institution}</h3>
                     {edu.degree && <p className="text-purple-300/80 mt-1">{edu.degree}</p>}
                     
                     <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-purple-300/60">

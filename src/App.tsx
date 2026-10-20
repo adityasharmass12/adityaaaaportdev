@@ -73,7 +73,7 @@ export default function App() {
 
           <footer role="contentinfo" className="py-12 text-center text-purple-300/50 border-t border-purple-500/20 mt-24 flex flex-col gap-2 bg-purple-900/10 backdrop-blur-xl">
             <p>© {new Date().getFullYear()} adityaaaportdev | Aditya Sharma. All rights reserved.</p>
-            <p className="text-emerald-400 font-medium tracking-wide">Designed and Built by Aditya sharma</p>
+            <p className="text-emerald-400 font-medium tracking-wide">Designed and Built by Aditya Sharma</p>
             <nav aria-label="Footer navigation" className="flex justify-center gap-4 mt-4 text-sm text-purple-400/60">
               <a href="#home" className="hover:text-purple-300 transition-colors">Home</a>
               <a href="#about" className="hover:text-purple-300 transition-colors">About</a>

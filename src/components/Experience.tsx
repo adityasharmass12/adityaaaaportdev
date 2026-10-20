@@ -16,7 +16,7 @@ export const Experience: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="mb-10 text-center"
       >
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 font-display sm:text-4xl mb-4">Experience</h2>
+        <h2 className="section-heading text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 mb-4">Experience</h2>
         <div className="w-24 h-1 bg-purple-500/30 mx-auto rounded-full" />
       </motion.div>
 
@@ -52,7 +52,7 @@ export const Experience: React.FC = () => {
                   <Briefcase size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-purple-100">{exp.role}</h3>
+                  <h3 className="section-subheading text-xl text-purple-100">{exp.role}</h3>
                   <p className="text-emerald-400/80">{exp.company}</p>
                 </div>
               </div>

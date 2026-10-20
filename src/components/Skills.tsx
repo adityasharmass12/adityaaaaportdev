@@ -26,7 +26,7 @@ export const Skills: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="mb-10 text-center"
       >
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 font-display sm:text-4xl mb-4">
+        <h2 className="section-heading text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 mb-4">
           <span className="text-emerald-500/50 font-mono text-2xl sm:text-3xl mr-2">&lt;</span>
           Skills & Expertise
           <span className="text-emerald-500/50 font-mono text-2xl sm:text-3xl ml-2">/&gt;</span>
@@ -49,7 +49,7 @@ export const Skills: React.FC = () => {
               <div className="p-2 bg-purple-500/20 rounded-lg text-purple-300">
                 <Code2 size={20} />
               </div>
-              <h3 className="text-lg font-semibold text-purple-100">{skillGroup.group}</h3>
+              <h3 className="section-subheading text-lg text-purple-100">{skillGroup.group}</h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {skillGroup.items.map((skill, i) => {
