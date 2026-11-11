@@ -19,7 +19,14 @@ import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react';
 import { ArrowUp } from 'lucide-react';
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    try {
+      return sessionStorage.getItem('portfolio-preloader-seen') !== 'true';
+    } catch {
+      return true;
+    }
+  });
+  const [introDone, setIntroDone] = useState(() => !showSplash);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   const { scrollYProgress } = useScroll();
@@ -58,16 +65,16 @@ export default function App() {
       <div className="fixed bottom-4 left-4 text-[var(--code-tag)] font-mono text-xl pointer-events-none z-[-1] hidden md:block">&lt;/html&gt;</div>
 
       <AnimatePresence>
-        {showSplash && <Splash onComplete={() => setShowSplash(false)} />}
+        {showSplash && <Splash onComplete={() => { setShowSplash(false); setIntroDone(true); }} />}
       </AnimatePresence>
 
       {!showSplash && (
         <main className="relative z-10" role="main">
           <header role="banner">
-            <Navbar />
+            <Navbar introDone={introDone} />
           </header>
           <article itemScope itemType="https://schema.org/Person">
-          <Hero />
+          <Hero introDone={introDone} />
           <About />
           <Skills />
           <Projects />

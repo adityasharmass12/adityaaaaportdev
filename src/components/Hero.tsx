@@ -7,17 +7,11 @@ import { useTheme } from '../context/ThemeContext';
 const FIRST_NAME = 'Aditya'.split('');
 const LAST_NAME = 'Sharma'.split('');
 
-export const Hero: React.FC = () => {
+export const Hero: React.FC<{ introDone?: boolean }> = ({ introDone = true }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [hasEntered, setHasEntered] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-
-  useEffect(() => {
-    const timer = setTimeout(() => setHasEntered(true), 1200);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -69,7 +63,7 @@ export const Hero: React.FC = () => {
           textShadow,
         }}
         transition={
-          !hasEntered && !shouldReduceMotion
+          !introDone && !shouldReduceMotion
             ? { duration: 0.5, delay: 0.1 + index * 0.04, ease: 'easeOut' }
             : isHovered
             ? { type: 'spring', stiffness: 300, damping: 18 }
@@ -181,7 +175,7 @@ export const Hero: React.FC = () => {
               href="#about"
               whileHover={{ scale: 1.05, boxShadow: "0px 0px 24px rgba(59,130,246,0.35)", transition: { type: "spring", stiffness: 400, damping: 17 } }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 rounded-full shadow-[0_8px_24px_rgba(37,99,235,0.28)] border border-blue-400/30 cursor-pointer"
+              className="flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold text-white transition-colors duration-200 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 rounded-full shadow-[0_8px_24px_rgba(37,99,235,0.28)] border border-blue-400/30 cursor-pointer"
             >
               About Me
               <ChevronDown size={18} />
@@ -203,12 +197,12 @@ export const Hero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        <div className="hero-portrait relative z-10">
+        <div className={`hero-portrait relative z-10 ${introDone ? 'intro-portrait' : ''}`}>
           <div className="hero-portrait-motion">
             <img
               src="/assets/hero-cutout.png"
               alt="Aditya Sharma — AI/ML Developer and Full-Stack Engineer based in Delhi, India"
-              className="hero-image"
+              className={`hero-image ${introDone ? 'intro-image' : ''}`}
               referrerPolicy="no-referrer"
               itemProp="image"
               loading="eager"

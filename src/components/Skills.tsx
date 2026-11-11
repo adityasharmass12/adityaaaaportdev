@@ -43,7 +43,7 @@ export const Skills: React.FC = () => {
             whileHover={{ scale: 1.05, y: -5, transition: { type: "spring", stiffness: 400, damping: 17 } }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: index * 0.15, duration: 0.5 }}
-            className="p-6 border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-all"
+            className="p-6 border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-colors"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-[#f1f5fb] border border-[rgba(15,23,42,0.08)] dark:border-transparent dark:bg-blue-500/20 rounded-lg text-blue-600 dark:text-sky-300">
@@ -62,7 +62,7 @@ export const Skills: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.15 + i * 0.05, duration: 0.3 }}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-[#0a1633] dark:text-[#dbe7ff] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] rounded-full hover:border-[rgba(37,99,235,0.35)] hover:bg-[#e6eef9] dark:hover:bg-blue-500/15 transition-all cursor-default"
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-[#0a1633] dark:text-[#dbe7ff] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] rounded-full hover:border-[rgba(37,99,235,0.35)] hover:bg-[#e6eef9] dark:hover:bg-blue-500/15 transition-colors cursor-default"
                   >
                     {icon && <span className="text-base">{icon}</span>}
                     {skill}

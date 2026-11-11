@@ -136,7 +136,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className={`absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-[rgba(8,12,22,0.9)] border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] text-[#0a1633] dark:text-[#dbe7ff] shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] transition-all duration-300 active:scale-95 cursor-pointer ${!canScrollLeft ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-[#f1f5fb] dark:hover:bg-blue-500/20'}`}
+            className={`absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-[rgba(8,12,22,0.9)] border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] text-[#0a1633] dark:text-[#dbe7ff] shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] transition-colors duration-300 active:scale-95 cursor-pointer ${!canScrollLeft ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-[#f1f5fb] dark:hover:bg-blue-500/20'}`}
             aria-label="Scroll Left"
           >
             <ChevronLeft size={24} />
@@ -181,7 +181,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                   }}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
-                  className="flex-none w-[85vw] sm:w-[340px] md:w-[360px] h-[450px] snap-start bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl group/card hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-all duration-300 relative flex flex-col justify-between cursor-default overflow-hidden"
+                  className="flex-none w-[85vw] sm:w-[340px] md:w-[360px] h-[450px] snap-start bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl group/card hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-colors duration-300 relative flex flex-col justify-between cursor-default overflow-hidden"
                 >
                   {/* Top content wrapper */}
                   <div className="flex flex-col flex-grow">
@@ -205,7 +205,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                     <div className="p-5 flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-3 gap-3">
                         <a href={project.live || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-sky-300 transition-colors">
-                          <h3 className="section-subheading text-lg text-[#0a1633] dark:text-[#dbe7ff] tracking-tight leading-tight group-hover/card:text-blue-600 dark:group-hover/card:text-sky-300 transition-all">
+                          <h3 className="section-subheading text-lg text-[#0a1633] dark:text-[#dbe7ff] tracking-tight leading-tight group-hover/card:text-blue-600 dark:group-hover/card:text-sky-300 transition-colors">
                             {project.title}
                           </h3>
                         </a>
@@ -229,7 +229,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#1d4ed8] dark:text-blue-200 hover:text-blue-700 dark:hover:text-white transition-all duration-200 rounded-full border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] hover:bg-[#e6eef9] hover:border-[rgba(37,99,235,0.35)] dark:hover:bg-blue-500/20 shadow-xs flex-1 cursor-pointer"
+                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#1d4ed8] dark:text-blue-200 hover:text-blue-700 dark:hover:text-white transition-colors duration-200 rounded-full border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] hover:bg-[#e6eef9] hover:border-[rgba(37,99,235,0.35)] dark:hover:bg-blue-500/20 shadow-xs flex-1 cursor-pointer"
                       >
                         <ExternalLink size={14} />
                         Live Demo
@@ -240,7 +240,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#1d4ed8] dark:text-blue-200 hover:text-blue-700 dark:hover:text-white transition-all duration-200 rounded-full border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] hover:bg-[#e6eef9] hover:border-[rgba(37,99,235,0.35)] dark:hover:bg-blue-500/20 shadow-xs flex-1 cursor-pointer"
+                        className="flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold text-[#1d4ed8] dark:text-blue-200 hover:text-blue-700 dark:hover:text-white transition-colors duration-200 rounded-full border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[#f1f5fb] dark:bg-[rgba(8,12,22,0.85)] hover:bg-[#e6eef9] hover:border-[rgba(37,99,235,0.35)] dark:hover:bg-blue-500/20 shadow-xs flex-1 cursor-pointer"
                       >
                         <Github size={14} />
                         GitHub
@@ -256,7 +256,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className={`absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-[rgba(8,12,22,0.9)] border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] text-[#0a1633] dark:text-[#dbe7ff] shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] transition-all duration-300 active:scale-95 cursor-pointer ${!canScrollRight ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-[#f1f5fb] dark:hover:bg-blue-500/20'}`}
+            className={`absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-[rgba(8,12,22,0.9)] border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] text-[#0a1633] dark:text-[#dbe7ff] shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] transition-colors duration-300 active:scale-95 cursor-pointer ${!canScrollRight ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100 hover:scale-110 hover:bg-[#f1f5fb] dark:hover:bg-blue-500/20'}`}
             aria-label="Scroll Right"
           >
             <ChevronRight size={24} />
@@ -275,7 +275,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                   scrollRef.current.scrollTo({ left: idx * cardWidth, behavior: 'smooth' });
                 }
               }}
-              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${activeIndex === idx ? 'bg-gradient-to-r from-blue-600 to-sky-400 scale-125 shadow-[0_0_8px_rgba(59,130,246,0.6)]' : 'bg-slate-300 dark:bg-blue-300/20 hover:bg-slate-400 dark:hover:bg-blue-300/40'}`}
+              className={`w-2 h-2 rounded-full transition-colors duration-300 cursor-pointer ${activeIndex === idx ? 'bg-gradient-to-r from-blue-600 to-sky-400 scale-125 shadow-[0_0_8px_rgba(59,130,246,0.6)]' : 'bg-slate-300 dark:bg-blue-300/20 hover:bg-slate-400 dark:hover:bg-blue-300/40'}`}
               aria-label={`Go to project ${idx + 1}`}
             />
           ))}

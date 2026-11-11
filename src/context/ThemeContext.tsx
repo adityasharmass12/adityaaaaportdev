@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 export type Theme = 'light' | 'dark';
 
@@ -20,60 +20,97 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     try {
       const saved = localStorage.getItem('theme') as Theme | null;
       if (saved === 'light' || saved === 'dark') return saved;
-      const systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-      return systemLight ? 'light' : 'dark';
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     } catch {
       return 'dark';
     }
   });
+  const audioContextRef = useRef<AudioContext | null>(null);
 
-  const applyTheme = (t: Theme) => {
+  const applyTheme = (next: Theme) => {
     const root = document.documentElement;
-    if (t === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-      root.style.colorScheme = 'dark';
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', '#020305');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-      root.style.colorScheme = 'light';
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', '#eef2f9');
-    }
-    try {
-      localStorage.setItem('theme', t);
-    } catch {
-      // storage unavailable
-    }
+    root.classList.toggle('dark', next === 'dark');
+    root.classList.toggle('light', next === 'light');
+    root.style.colorScheme = next;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    meta?.setAttribute('content', next === 'dark' ? '#020305' : '#eef2f9');
   };
 
   useEffect(() => {
     applyTheme(theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // Storage may be unavailable.
+    }
   }, [theme]);
 
-  const toggleTheme = () => {
-    const root = document.documentElement;
-    root.classList.add('theme-transition');
-    setThemeState((prev) => {
-      const next = prev === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-      return next;
-    });
-    setTimeout(() => {
-      root.classList.remove('theme-transition');
-    }, 280);
+  const playToggleSound = (toDark: boolean) => {
+    try {
+      const context = audioContextRef.current ?? new AudioContext();
+      audioContextRef.current = context;
+      const play = () => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        const compressor = context.createDynamicsCompressor();
+        const now = context.currentTime;
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(toDark ? 440 : 330, now);
+        oscillator.frequency.exponentialRampToValueAtTime(toDark ? 330 : 523, now + 0.18);
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.35, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+        oscillator.connect(gain);
+        gain.connect(compressor);
+        compressor.connect(context.destination);
+        oscillator.start(now);
+        oscillator.stop(now + 0.18);
+      };
+      if (context.state === 'suspended') {
+        void context.resume().then(play).catch(() => {});
+      } else {
+        play();
+      }
+    } catch {
+      // Audio must never prevent a theme change.
+    }
   };
 
-  const setTheme = (t: Theme) => {
+  const changeTheme = (next: Theme) => {
     const root = document.documentElement;
-    root.classList.add('theme-transition');
-    setThemeState(t);
-    applyTheme(t);
-    setTimeout(() => {
-      root.classList.remove('theme-transition');
-    }, 280);
+    const switchTheme = () => {
+      root.classList.add('theme-switching');
+      applyTheme(next);
+      setThemeState(next);
+      try {
+        localStorage.setItem('theme', next);
+      } catch {
+        // Storage may be unavailable.
+      }
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.setTimeout(() => root.classList.remove('theme-switching'), 350);
+        });
+      });
+    };
+    const transitionDocument = document as Document & {
+      startViewTransition?: (callback: () => void) => unknown;
+    };
+    if (transitionDocument.startViewTransition) {
+      transitionDocument.startViewTransition(switchTheme);
+    } else {
+      switchTheme();
+    }
+  };
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    playToggleSound(next === 'dark');
+    changeTheme(next);
+  };
+
+  const setTheme = (next: Theme) => {
+    if (next !== theme) changeTheme(next);
   };
 
   return (

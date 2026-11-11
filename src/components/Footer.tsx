@@ -134,7 +134,7 @@ export const Footer: React.FC = () => {
             <button
               onClick={scrollToTop}
               aria-label="Scroll to top"
-              className="group w-11 h-11 rounded-full flex items-center justify-center border transition-all duration-200 cursor-pointer"
+              className="group w-11 h-11 rounded-full flex items-center justify-center border transition-colors duration-200 cursor-pointer"
               style={{
                 background: isDark ? 'rgba(8,12,22,0.6)' : 'rgba(255,255,255,0.6)',
                 backdropFilter: 'blur(12px)',

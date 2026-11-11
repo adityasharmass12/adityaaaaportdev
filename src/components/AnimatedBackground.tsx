@@ -171,6 +171,10 @@ export const AnimatedBackground: React.FC = () => {
     };
 
     const animate = () => {
+      if (document.documentElement.classList.contains('theme-switching')) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const isDark = themeRef.current === 'dark';
 
@@ -243,7 +247,7 @@ export const AnimatedBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-[-1] transition-colors duration-300"
+      className="fixed inset-0 w-full h-full pointer-events-none z-[-1]"
       style={{ background: theme === 'dark' ? '#020305' : '#eef2f9' }}
     />
   );

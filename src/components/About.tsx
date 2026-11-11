@@ -26,7 +26,7 @@ export const About: React.FC = () => {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ delay: 0.2, duration: 0.6 }}
         whileHover={{ scale: 1.01, transition: { type: "spring", stiffness: 400, damping: 17 } }}
-        className="p-8 sm:p-10 border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-2xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] relative overflow-hidden transition-all"
+        className="p-8 sm:p-10 border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-2xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] relative overflow-hidden transition-colors"
       >
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
@@ -71,14 +71,14 @@ export const About: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full mt-4">
             <motion.div 
               whileHover={{ scale: 1.05, y: -5, transition: { type: "spring", stiffness: 400, damping: 17 } }}
-              className="flex flex-col items-center justify-center p-6 bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-all"
+              className="flex flex-col items-center justify-center p-6 bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-colors"
             >
               <span className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 dark:from-sky-300 dark:to-blue-400 mb-2">5+</span>
               <span className="text-sm sm:text-base text-[#334155] dark:text-blue-200/80 font-medium text-center">Hackathons</span>
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.05, y: -5, transition: { type: "spring", stiffness: 400, damping: 17 } }}
-              className="flex flex-col items-center justify-center p-6 bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-all"
+              className="flex flex-col items-center justify-center p-6 bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-colors"
             >
               <span className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 dark:from-sky-300 dark:to-blue-400 mb-2">10+</span>
               <span className="text-sm sm:text-base text-[#334155] dark:text-blue-200/80 font-medium text-center">Events Attended & Volunteered</span>

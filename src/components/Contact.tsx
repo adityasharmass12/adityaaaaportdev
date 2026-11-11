@@ -49,7 +49,7 @@ export const Contact: React.FC = () => {
             transition={{ delay: index * 0.15, duration: 0.5 }}
             whileHover={{ y: -5, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-2xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(2,3,5,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/30 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-all group"
+            className="border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-2xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(2,3,5,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/30 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-colors group"
           >
             <a
               href={link.url}
@@ -58,7 +58,7 @@ export const Contact: React.FC = () => {
               className="flex flex-col items-center justify-center gap-4 p-8 w-full h-full relative z-10"
               title={`Visit Aditya Sharma on ${link.name}`}
             >
-              <div className="p-4 bg-[#f1f5fb] border border-[rgba(15,23,42,0.08)] dark:border-transparent dark:bg-blue-500/20 text-blue-600 dark:text-sky-400 rounded-full group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-500 dark:group-hover:text-white transition-all duration-300">
+              <div className="p-4 bg-[#f1f5fb] border border-[rgba(15,23,42,0.08)] dark:border-transparent dark:bg-blue-500/20 text-blue-600 dark:text-sky-400 rounded-full group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-500 dark:group-hover:text-white transition-colors duration-300">
                 {getIcon(link.name)}
               </div>
               <span className="font-medium text-[#0a1633] dark:text-[#dbe7ff] group-hover:text-blue-600 dark:group-hover:text-sky-300 transition-colors">{link.name}</span>
@@ -73,13 +73,13 @@ export const Contact: React.FC = () => {
           transition={{ delay: resumeData.basics.links.length * 0.15, duration: 0.5 }}
           whileHover={{ y: -5, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-2xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(2,3,5,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/30 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-all group cursor-pointer"
+          className="border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-2xl rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_0_rgba(2,3,5,0.6)] hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/30 hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] transition-colors group cursor-pointer"
         >
           <div
             onClick={handleCopyEmail}
             className="flex flex-col items-center justify-center gap-4 p-8 w-full h-full relative z-10"
           >
-            <div className="p-4 bg-[#f1f5fb] border border-[rgba(15,23,42,0.08)] dark:border-transparent dark:bg-blue-500/20 text-blue-600 dark:text-sky-400 rounded-full group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-500 dark:group-hover:text-white transition-all duration-300">
+            <div className="p-4 bg-[#f1f5fb] border border-[rgba(15,23,42,0.08)] dark:border-transparent dark:bg-blue-500/20 text-blue-600 dark:text-sky-400 rounded-full group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-500 dark:group-hover:text-white transition-colors duration-300">
               {copied ? <Check size={24} className="text-emerald-500" /> : <Mail size={24} />}
             </div>
             <span className="font-medium text-[#0a1633] dark:text-[#dbe7ff] group-hover:text-blue-600 dark:group-hover:text-sky-300 transition-colors">
