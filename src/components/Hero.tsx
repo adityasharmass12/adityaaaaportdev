@@ -38,12 +38,12 @@ export const Hero: React.FC = () => {
 
     const y = shouldReduceMotion ? 0 : isHovered ? -10 : isNeighbour ? -4 : 0;
     const scale = shouldReduceMotion ? 1 : isHovered ? 1.08 : 1;
-    const defaultColor = isDark ? '#f5f8ff' : '#0a1633';
-    const hoverColor = isDark ? '#93c5fd' : '#2563eb';
+    const defaultColor = 'var(--hero-name-color)';
+    const hoverColor = '#93c5fd';
     const color = isHovered ? hoverColor : defaultColor;
     const textShadow = isHovered 
       ? (isDark ? '0 0 16px rgba(59, 130, 246, 0.35)' : '0 0 16px rgba(37, 99, 235, 0.25)') 
-      : 'none';
+      : 'inherit';
     const fontFamily = isHovered
       ? "'Inter', sans-serif"
       : "'Instrument Serif', 'Playfair Display', Georgia, serif";
@@ -91,7 +91,6 @@ export const Hero: React.FC = () => {
           fontFamily,
           fontStyle,
           fontWeight,
-          WebkitTextStroke: isHovered ? 'none' : (isDark ? '0.04em #f5f8ff' : '0.04em #0a1633'),
           paintOrder: 'stroke fill',
           willChange: 'transform',
           transformOrigin: 'bottom center',
@@ -103,19 +102,19 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" aria-label="Hero — Aditya Sharma" className="relative flex items-center justify-center min-h-screen px-6 pt-28 sm:pt-32 overflow-hidden">
-      <div className="max-w-6xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+    <section id="home" aria-label="Hero — Aditya Sharma" className="hero-section relative">
+      <div className="hero-content">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex-1 text-center lg:text-left relative z-10"
+          className="hero-copy relative z-20"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="mb-6 text-[10px] sm:text-sm font-mono text-[#475569] dark:text-blue-400/60 break-words"
+            className="text-[10px] sm:text-sm font-mono text-[#475569] dark:text-blue-400/60 break-words"
           >
             <span className="text-[#1d4ed8] dark:text-sky-400 font-semibold">import</span> {'{'} Developer {'}'} <span className="text-[#1d4ed8] dark:text-sky-400 font-semibold">from</span> <span className="text-[#0f766e] dark:text-emerald-400 font-medium">'@adityaaaportdev'</span>;
             <span className="sr-only">adityaaaportdev | Aditya Sharma Portfolio</span>
@@ -123,20 +122,18 @@ export const Hero: React.FC = () => {
 
           <motion.h1 
             aria-label="Aditya Sharma"
-            className="mb-4 text-left cursor-default block"
+            className="hero-name text-left cursor-default block"
             style={{
               fontFamily: "'Instrument Serif', 'Playfair Display', Georgia, serif",
-              fontSize: 'clamp(3rem, 8vw, 6.5rem)',
               lineHeight: 1,
               letterSpacing: '-0.02em',
-              color: isDark ? '#f5f8ff' : '#0a1633',
+              color: 'var(--hero-name-color)',
               fontStyle: 'italic',
               fontWeight: 400,
-              WebkitTextStroke: isDark ? '0.04em #f5f8ff' : '0.04em #0a1633',
               paintOrder: 'stroke fill',
               background: 'none',
               WebkitTextFillColor: 'initial',
-              textShadow: 'none',
+              textShadow: 'var(--hero-name-glow)',
               filter: 'none',
             }}
           >
@@ -159,7 +156,7 @@ export const Hero: React.FC = () => {
           </span>
 
           <motion.p 
-            className="mb-10 font-normal text-left text-[#334155] dark:text-[#a3b0cc]"
+            className="font-normal text-left text-[#334155] dark:text-[#a3b0cc]"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
@@ -206,35 +203,18 @@ export const Hero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, x: 40 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex-1 relative max-w-[320px] w-full mt-10 lg:mt-0"
-        >
-          <motion.div
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="hidden dark:block absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-sky-500/10 to-blue-500/20 rounded-3xl blur-xl transform rotate-6 scale-105 pointer-events-none" />
-            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-[rgba(37,99,235,0.20)] dark:border-[rgba(59,130,246,0.18)] shadow-[0_12px_40px_rgba(37,99,235,0.22)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.8)] group backdrop-blur-xl bg-transparent">
-              <div className="hidden dark:block absolute inset-0 bg-gradient-to-t from-[#020305]/80 via-[#020305]/20 to-transparent z-10 transition-opacity duration-500 group-hover:opacity-30 pointer-events-none" />
-              <img
-                src="/my-image.jpg.jpeg"
-                alt="Aditya Sharma — AI/ML Developer and Full-Stack Engineer based in Delhi, India"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                referrerPolicy="no-referrer"
-                itemProp="image"
-                loading="eager"
-                width="320"
-                height="427"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out flex items-center justify-between">
-                <p className="text-blue-600 dark:text-sky-400 font-mono text-sm font-semibold bg-white dark:bg-[#020305]/90 px-3 py-1.5 rounded-lg border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)]">Hello World 👋</p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+        <div className="hero-portrait relative z-10">
+          <div className="hero-portrait-motion">
+            <img
+              src="/assets/hero-cutout.png"
+              alt="Aditya Sharma — AI/ML Developer and Full-Stack Engineer based in Delhi, India"
+              className="hero-image"
+              referrerPolicy="no-referrer"
+              itemProp="image"
+              loading="eager"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
