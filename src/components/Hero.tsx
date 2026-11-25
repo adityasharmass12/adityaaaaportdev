@@ -16,7 +16,7 @@ export const Hero: React.FC<{ introDone?: boolean }> = ({ introDone = true }) =>
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === 'r' && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        window.open('/Aditya_Sharma_Resume.pdf', '_blank');
+        window.open('/Aditya%20sharma%20Resume.pdf', '_blank');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -181,7 +181,7 @@ export const Hero: React.FC<{ introDone?: boolean }> = ({ introDone = true }) =>
               <ChevronDown size={18} />
             </motion.a>
             <motion.a
-              href="/Aditya_Sharma_Resume.pdf"
+              href="/Aditya%20sharma%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, boxShadow: isDark ? "0px 0px 20px rgba(59,130,246,0.25)" : "0 12px 32px rgba(37,99,235,0.18)", transition: { type: "spring", stiffness: 400, damping: 17 } }}
@@ -201,7 +201,7 @@ export const Hero: React.FC<{ introDone?: boolean }> = ({ introDone = true }) =>
           <div className="hero-portrait-motion">
             <img
               src="/assets/hero-cutout.png"
-              alt="Aditya Sharma — AI/ML Developer and Full-Stack Engineer based in Delhi, India"
+              alt="Aditya Sharma, third-year Computer Science student interested in AI and data analytics"
               className={`hero-image ${introDone ? 'intro-image' : ''}`}
               referrerPolicy="no-referrer"
               itemProp="image"

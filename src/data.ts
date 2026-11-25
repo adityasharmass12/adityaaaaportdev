@@ -1,7 +1,13 @@
+interface EducationRecord {
+  institution: string;
+  degree: string;
+  dates: string;
+}
+
 export const resumeData = {
   basics: {
     name: "Aditya Sharma",
-    title: "Undergraduate Engineering Student | AI/ML Enthusiast | Passionate about Intelligent Systems",
+    title: "Third-Year B.Tech CSE Student | AI/ML & Data Analytics",
     summary: "I am a Computer Science Engineering undergraduate with a strong interest in Artificial Intelligence and Machine Learning. Dedicated to engineering scalable applications, I am passionate about understanding how intelligent systems work and how data-driven technologies can solve real-world problems. Alongside my technical pursuits, I am also a passionate Video Editor, bringing stories to life through creative visual editing. My goal is to build a robust foundation in programming, algorithms, and machine learning concepts while continuously exploring new advancements in AI. I enjoy learning new technologies, working on practical projects, and improving my problem-solving abilities through hackathons and collaborative initiatives. In the future, I aspire to specialize in AI/ML and contribute to developing innovative, impactful, and intelligent solutions.",
     location: "Delhi, India",
     email: "adityasharma27120809@gmail.com",
@@ -31,21 +37,18 @@ export const resumeData = {
       role: "President",
       dates: "September 2026 - Present",
       location: "",
-      bullets: []
+      bullets: [
+        "Lead the society’s activities, coordinating events, workshops, and content, design, and technical teams."
+      ]
     },
     {
       company: "AI Renaissance (A.I.R)",
       role: "Core Member",
       dates: "September 2025 - August 2026 (1 year)",
       location: "",
-      bullets: []
-    },
-    {
-      company: "Smaaash Entertainment Pvt. Ltd.",
-      role: "Campus Ambassador",
-      dates: "June 2025 - Present (10 months)",
-      location: "",
-      bullets: []
+      bullets: [
+        "Helped organize AI/ML learning sessions and student engagement initiatives."
+      ]
     }
   ],
   achievements: [
@@ -64,25 +67,11 @@ export const resumeData = {
       image: "/hackindia-dtc.png"
     },
     {
-      title: "CodeCraft: Fullstack Web Development with Flask",
-      organization: "Delhi Technical Campus (Skill Development Center)",
-      date: "April 2025",
-      description: "Completed a comprehensive hands-on workshop focused on building full-stack web applications using the Flask framework.",
-      image: "/codecraft-flask.jpg.jpeg"
-    },
-    {
       title: "Industrial Visit to FANUC INDIA",
       organization: "Delhi Technical Campus",
       date: "2025",
       description: "Participated in an industrial visit to FANUC INDIA organized by the Department of Computer Science and Engineering to learn about industrial automation.",
       image: "/fanuc-visit.jpg.jpeg"
-    },
-    {
-      title: "Artificial Intelligence Fundamentals",
-      organization: "IBM SkillsBuild",
-      date: "June 2026",
-      description: "Successfully completed the Artificial Intelligence Fundamentals course on IBM SkillsBuild and earned the official credential.",
-      image: "/ibm-ai-fundamentals.png"
     },
     {
       title: "OS Code Open source and Ai Conclave event in microsoft",
@@ -104,9 +93,44 @@ export const resumeData = {
       date: "2025",
       description: "Actively participated in the Build with AI event by AI Community Delhi, networking with peers and industry professionals.",
       image: "/tech-meetup.jpg.jpeg"
+    },
+    {
+      title: "Machine Learning with Python",
+      organization: "IBM / Cognitive Class",
+      date: "July 17, 2026",
+      description: "Credential ID: 139b89dd8e0f4f6d95a2bba7f1d8238e",
+      image: "/machine-learning-python-certificate.png",
+      verificationUrl: "https://courses.cognitiveclass.ai/certificates/139b89dd8e0f4f6d95a2bba7f1d8238e"
+    },
+    {
+      title: "Artificial Intelligence Fundamentals",
+      organization: "IBM SkillsBuild",
+      date: "June 2026",
+      description: "Credential ID: PLAN-7913EE1DB030",
+      image: "/ibm-ai-fundamentals.png"
     }
   ],
   projects: [
+    {
+      title: "PoisonGuard",
+      description: "Poisoned Dataset Detection System. SECURE YOUR DATA BEFORE TRAINING AI. Features real-time analysis, threat mitigation, and data integrity checks.",
+      technologies: ["AI/ML", "Data Security", "Python", "React"],
+      github: "https://github.com/adityasharmass12/PoisonGuard",
+      live: "https://poison-guard-liard.vercel.app/",
+      iconType: "shield",
+      image: "/poisonguard-screenshot.png",
+      showAllTechnologies: true
+    },
+    {
+      title: "India Air Quality Analysis (2015–2020)",
+      description: "Analysed 29,531 daily air quality records across 26 Indian cities to identify pollution patterns. Identified Delhi’s seasonal AQI variation and PM2.5 correlation of 0.88, and developed an interactive Streamlit dashboard.",
+      technologies: ["Python", "Pandas", "SQL", "Matplotlib", "Seaborn", "Streamlit"],
+      image: "/india-air-quality-dashboard.png",
+      imageFit: "contain" as const,
+      showAllTechnologies: true,
+      live: "https://air-quality-data-india.streamlit.app/",
+      github: "https://github.com/adityasharmass12/AQI-Analysis-India-2015-20"
+    },
     {
       title: "IRCTC Neo",
       description: "A full-stack reimagining of the Indian Railways platform with a modern UI, built with React 19, TypeScript, and Django REST Framework.",
@@ -114,7 +138,8 @@ export const resumeData = {
       github: "https://github.com/adityasharmass12/IRCTC-Neo",
       live: "https://irctc-neo.vercel.app/",
       iconType: "web",
-      image: "/irctc-neo.png"
+      image: "/irctc-neo.png",
+      showAllTechnologies: true
     },
     {
       title: "adityaaaportdev",
@@ -123,54 +148,48 @@ export const resumeData = {
       github: "https://github.com/adityasharmass12/adityaaaaportdev",
       live: "https://adityaaaaportdev.vercel.app/",
       iconType: "web",
-      image: "/portfolio-screenshot.jpg.png"
+      image: "/portfolio-screenshot.jpg.png",
+      showAllTechnologies: true
     },
-    {
-      title: "PoisonGuard",
-      description: "Poisoned Dataset Detection System. SECURE YOUR DATA BEFORE TRAINING AI. Features real-time analysis, threat mitigation, and data integrity checks.",
-      technologies: ["AI/ML", "Data Security", "Python", "React"],
-      github: "https://github.com/adityasharmass12/PoisonGuard",
-      live: "https://poison-guard-liard.vercel.app/",
-      iconType: "shield",
-      image: "/poisonguard-screenshot.png"
-    }
   ],
   skills: [
     {
-      group: "Top Skills",
-      items: ["Social Media Management", "Team Leadership", "Python"]
+      group: "Programming Languages",
+      items: ["Python", "SQL", "C", "C++", "JavaScript", "TypeScript"]
     },
     {
-      group: "Languages",
-      items: ["C", "C++", "Python", "HTML", "CSS", "JavaScript", "LangChain"]
+      group: "AI/ML & Data Science",
+      items: ["Pandas", "NumPy", "Scikit-learn", "PyTorch", "LangChain", "Matplotlib", "Seaborn", "Excel"]
     },
     {
-      group: "Focus Areas",
-      items: ["AI/ML", "Frontend development", "Backend development", "programming fundamentals", "real-world application building"]
+      group: "Development",
+      items: ["React.js", "FastAPI", "REST APIs", "Tailwind CSS"]
+    },
+    {
+      group: "Tools",
+      items: ["Git", "GitHub", "Docker", "VS Code", "Jupyter Notebook"]
+    },
+    {
+      group: "Core Concepts",
+      items: ["Data Structures & Algorithms", "Object-Oriented Programming", "Statistics", "Exploratory Data Analysis"]
     }
   ],
   education: [
     {
       institution: "Delhi Technical Campus (GGSIPU)",
-      degree: "B.Tech, Computer Science Engineering",
-      dates: "2024 - 2028"
+      degree: "B.Tech in Computer Science & Engineering",
+      dates: "September 2024 - July 2028"
     },
     {
-      institution: "Kendriya Vidyalaya No.3",
-      degree: "Senior Secondary (12th)",
-      dates: "2024"
-    },
-    {
-      institution: "Kendriya Vidyalaya No.3",
-      degree: "Secondary (10th)",
-      dates: "2022"
+      institution: "Kendriya Vidyalaya",
+      degree: "Senior Secondary (XII) & Secondary (X)",
+      dates: "2022 - 2024"
     }
-  ],
-  certifications: [],
+  ] as EducationRecord[],
   awards: [],
   extra: [
-    "Demonstrated ability to architect solutions under pressure through active participation in competitive programming and hackathons.",
-    "Strong advocate for continuous learning, currently expanding expertise in Data Structures, Algorithms, and emerging AI technologies.",
-    "Committed to fostering collaborative environments and driving technical innovation within cross-functional teams."
+    "Actively practicing data structures & algorithms on LeetCode and Codeforces to sharpen competitive programming skills.",
+    "Open to internship opportunities in AI/ML, Data Analytics, and Full-Stack Software Development.",
+    "Passionate about building AI-powered applications with a continuous focus on strengthening technical expertise and problem-solving ability."
   ]
 };

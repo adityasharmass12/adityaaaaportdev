@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 export const SEOHead: React.FC = () => {
   useEffect(() => {
-    document.title = 'Aditya Sharma — AI/ML Developer & Full-Stack Engineer | adityaaaportdev Portfolio';
+    document.title = 'Aditya Sharma — AI/ML & Data Analytics Student | Portfolio';
 
     const setMeta = (attr: string, key: string, content: string) => {
       let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
@@ -24,17 +24,17 @@ export const SEOHead: React.FC = () => {
       el.setAttribute('href', href);
     };
 
-    setMeta('name', 'description', 'Aditya Sharma (adityaaaportdev) — Computer Science Engineering student at Delhi Technical Campus (GGSIPU) specializing in AI/ML, Python, React, and Full-Stack Development. Explore projects like PoisonGuard.');
-    setMeta('name', 'keywords', 'adityaaaportdev, Aditya Sharma, aditya sharma portfolio, AI developer Delhi, ML engineer India, full-stack developer, PoisonGuard, Delhi Technical Campus, GGSIPU, Python developer, React developer');
+    setMeta('name', 'description', 'Aditya Sharma is a third-year Computer Science and Engineering student at Delhi Technical Campus (GGSIPU), interested in AI, machine learning, data analytics, and software development.');
+    setMeta('name', 'keywords', 'Aditya Sharma, portfolio, AI, machine learning, data analytics, Python, SQL, Delhi Technical Campus, GGSIPU');
     setMeta('name', 'author', 'Aditya Sharma');
 
-    setMeta('property', 'og:title', 'Aditya Sharma — AI/ML Developer & Full-Stack Engineer Portfolio');
-    setMeta('property', 'og:description', 'Explore the professional portfolio of Aditya Sharma (adityaaaportdev) — AI/ML projects, hackathon achievements, and full-stack development expertise.');
+    setMeta('property', 'og:title', 'Aditya Sharma — AI/ML & Data Analytics Portfolio');
+    setMeta('property', 'og:description', 'Explore Aditya Sharma’s work in AI, machine learning, data analytics, and software development.');
     setMeta('property', 'og:url', 'https://adityaaaaportdev.vercel.app/');
     setMeta('property', 'og:type', 'profile');
 
-    setMeta('name', 'twitter:title', 'Aditya Sharma — AI/ML Developer & Full-Stack Engineer');
-    setMeta('name', 'twitter:description', 'Portfolio of Aditya Sharma (adityaaaportdev) — AI/ML projects, hackathon achievements, and full-stack expertise.');
+    setMeta('name', 'twitter:title', 'Aditya Sharma — AI/ML & Data Analytics Portfolio');
+    setMeta('name', 'twitter:description', 'Portfolio of Aditya Sharma, a Computer Science student interested in AI, machine learning, data analytics, and software development.');
 
     setLink('canonical', 'https://adityaaaaportdev.vercel.app/');
   }, []);

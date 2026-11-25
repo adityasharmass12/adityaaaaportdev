@@ -45,7 +45,7 @@ export const Experience: React.FC = () => {
             >
             <button
               onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-              className="w-full px-6 py-6 flex items-center justify-between text-left hover:bg-[#f1f5fb] dark:hover:bg-blue-500/10 transition-colors relative z-10 cursor-pointer"
+              className="w-full px-5 py-5 flex items-center justify-between text-left hover:bg-[#f1f5fb] dark:hover:bg-blue-500/10 transition-colors relative z-10 cursor-pointer"
             >
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-[#f1f5fb] border border-[rgba(15,23,42,0.08)] dark:border-transparent dark:bg-blue-500/20 rounded-xl text-blue-600 dark:text-sky-300">
@@ -76,7 +76,7 @@ export const Experience: React.FC = () => {
                   transition={{ duration: 0.3 }}
                   className="relative z-10"
                 >
-                  <div className="px-6 pb-6 pt-2 border-t border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)]">
+                  <div className="px-5 pb-5 pt-2 border-t border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)]">
                     <span className="sm:hidden block text-sm text-[#64748b] dark:text-blue-300/60 mb-4">{exp.dates}</span>
                     {exp.bullets.length > 0 && (
                       <ul className="space-y-2">

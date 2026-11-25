@@ -205,7 +205,7 @@ html.theme-switching canvas {
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  height: 84px;
+  height: 68px;
   border-radius: 9999px;
   padding: 0 28px;
 }
@@ -430,7 +430,7 @@ body {
   }
 
   .navbar-shell {
-    height: 64px;
+    height: 54px;
     padding: 0 20px;
   }
 

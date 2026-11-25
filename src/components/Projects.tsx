@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { resumeData } from '../data';
 
@@ -10,6 +10,9 @@ interface Project {
   github?: string;
   live?: string;
   image?: string;
+  imageFit?: 'contain' | 'cover';
+  fitMobile?: boolean;
+  showAllTechnologies?: boolean;
 }
 
 interface ProjectsProps {
@@ -27,6 +30,9 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
   const dragStartX = useRef(0);
   const dragScrollLeft = useRef(0);
   const dragMoved = useRef(false);
+
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -114,8 +120,12 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
   };
 
   return (
-    <section id="projects" aria-label="Featured Projects" className="py-16 px-6 max-w-6xl mx-auto relative">
-      <div className="border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(8,12,22,0.7)] backdrop-blur-2xl rounded-[2rem] p-8 sm:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_8px_24px_rgba(37,99,235,0.10)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] relative">
+    <section id="projects" ref={sectionRef} aria-label="Featured Projects" className="py-16 px-6 max-w-6xl mx-auto relative">
+      <motion.div
+        initial={{ opacity: 0, y: 60, scale: 0.97 }}
+        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.97 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="border border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(8,12,22,0.7)] backdrop-blur-2xl rounded-[2rem] p-6 sm:p-8 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_8px_24px_rgba(37,99,235,0.10)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -166,35 +176,44 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
               const isHovered = hoveredIdx === idx;
               const isAnyHovered = hoveredIdx !== null;
               const isSibling = isAnyHovered && !isHovered;
+              const projectImage = project.image && (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'} group-hover/card:scale-105 transition-transform duration-500 ease-out`}
+                  loading="lazy"
+                />
+              );
 
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ delay: idx * 0.05, duration: 0.5 }}
-                  animate={{
-                    scale: isHovered ? 1.03 : (isSibling ? 0.98 : 1),
+                  initial={{ opacity: 0, y: 50, scale: 0.92 }}
+                  animate={isInView ? {
                     opacity: isSibling ? 0.9 : 1,
-                    y: isHovered ? -5 : 0
+                    y: isHovered ? -5 : 0,
+                    scale: isHovered ? 1.03 : (isSibling ? 0.98 : 1),
+                  } : { opacity: 0, y: 50, scale: 0.92 }}
+                  transition={{
+                    delay: isInView ? idx * 0.12 : 0,
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                    scale: { type: "spring", stiffness: 300, damping: 25 },
                   }}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
-                  className="flex-none w-[85vw] sm:w-[340px] md:w-[360px] h-[450px] snap-start bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl group/card hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-colors duration-300 relative flex flex-col justify-between cursor-default overflow-hidden"
+                  className={`flex-none ${project.fitMobile ? 'w-full h-[430px] sm:w-[300px] sm:h-[430px] md:w-[320px]' : 'w-[80vw] sm:w-[300px] md:w-[320px] h-[430px]'} snap-start bg-white dark:bg-[rgba(8,12,22,0.7)] dark:backdrop-blur-xl border border-[rgba(15,23,42,0.10)] dark:border-[rgba(59,130,246,0.14)] rounded-2xl group/card hover:border-[rgba(37,99,235,0.35)] dark:hover:border-blue-500/40 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_6px_20px_rgba(15,23,42,0.08),0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.18)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-colors duration-300 relative flex flex-col justify-between cursor-default overflow-hidden`}
                 >
                   {/* Top content wrapper */}
-                  <div className="flex flex-col flex-grow">
-                    <div className="relative w-full aspect-[16/10] bg-slate-100 dark:bg-slate-900/50 border-b border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] overflow-hidden shrink-0 z-10">
-                      {project.image ? (
-                        <a href={project.live || '#'} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer relative overflow-hidden">
-                          <div className="absolute inset-0 bg-blue-600/5 group-hover/card:bg-transparent transition-colors z-10 pointer-events-none" />
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500 ease-out"
-                          />
-                        </a>
+                  <div className="flex flex-col flex-grow min-h-0">
+                    <div className="relative w-full aspect-[16/9] bg-slate-100 dark:bg-slate-900/50 border-b border-[rgba(15,23,42,0.08)] dark:border-[rgba(59,130,246,0.14)] overflow-hidden shrink-0 z-10">
+                      {projectImage ? (
+                        project.live ? (
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer relative overflow-hidden">
+                            <div className="absolute inset-0 bg-blue-600/5 group-hover/card:bg-transparent transition-colors z-10 pointer-events-none" />
+                            {projectImage}
+                          </a>
+                        ) : projectImage
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-slate-400 dark:text-blue-300/50 font-mono text-sm bg-slate-100 dark:bg-blue-950/20">
                           No image available
@@ -202,28 +221,41 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
                       )}
                     </div>
 
-                    <div className="p-5 flex flex-col flex-grow">
+                    <div className="p-4 flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-3 gap-3">
-                        <a href={project.live || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-sky-300 transition-colors">
-                          <h3 className="section-subheading text-lg text-[#0a1633] dark:text-[#dbe7ff] tracking-tight leading-tight group-hover/card:text-blue-600 dark:group-hover/card:text-sky-300 transition-colors">
-                            {project.title}
-                          </h3>
-                        </a>
-                        {project.technologies && project.technologies.length > 0 && (
+                        {project.live ? (
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-sky-300 transition-colors">
+                            <h3 className="section-subheading text-lg text-[#0a1633] dark:text-[#dbe7ff] tracking-tight leading-tight group-hover/card:text-blue-600 dark:group-hover/card:text-sky-300 transition-colors">
+                              {project.title}
+                            </h3>
+                          </a>
+                        ) : (
+                          <h3 className="section-subheading text-lg text-[#0a1633] dark:text-[#dbe7ff] tracking-tight leading-tight">{project.title}</h3>
+                        )}
+                        {!project.showAllTechnologies && project.technologies && project.technologies.length > 0 && (
                           <span className="px-2.5 py-0.5 bg-[#f1f5fb] dark:bg-sky-500/10 border border-[rgba(15,23,42,0.08)] dark:border-sky-500/20 rounded-full text-[10px] sm:text-xs font-mono text-[#1d4ed8] dark:text-sky-400 capitalize tracking-wide shrink-0 whitespace-nowrap shadow-xs">
                             {project.technologies[0]}
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-[#334155] dark:text-[#a3b0cc] line-clamp-2 leading-relaxed mb-4">
+                      <p className={`text-sm text-[#334155] dark:text-[#a3b0cc] ${project.showAllTechnologies ? 'line-clamp-2' : 'line-clamp-2'} leading-relaxed mb-3`}>
                         {project.description}
                       </p>
+                      {project.showAllTechnologies && (
+                        <div className="flex flex-wrap gap-1.5 mt-auto pb-1" aria-label="Technology stack">
+                          {project.technologies.map((technology) => (
+                            <span key={technology} className="px-2 py-1 text-[10px] font-mono text-[#1d4ed8] dark:text-sky-300 bg-[#f1f5fb] dark:bg-sky-500/10 border border-[rgba(15,23,42,0.08)] dark:border-sky-500/20 rounded-full">
+                              {technology}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-30 pointer-events-none" />
 
-                  <div className="px-5 pb-5 pt-0 flex gap-3 z-10 shrink-0">
+                  <div className="px-4 pb-4 pt-2 flex gap-3 z-10 shrink-0">
                     {project.live && (
                       <a
                         href={project.live}
@@ -264,7 +296,12 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
         </div>
 
         {/* Active Card Indicator Dots */}
-        <div className="flex justify-center gap-2 mt-4 z-10 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="flex justify-center gap-2 mt-4 z-10 relative"
+        >
           {projects.map((_, idx) => (
             <button
               key={idx}
@@ -279,8 +316,8 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = resumeData.projec
               aria-label={`Go to project ${idx + 1}`}
             />
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <style dangerouslySetInnerHTML={{__html: "\n        .hide-scrollbar::-webkit-scrollbar {\n          display: none;\n        }\n      "}} />
     </section>
