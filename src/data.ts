@@ -7,7 +7,7 @@ interface EducationRecord {
 export const resumeData = {
   basics: {
     name: "Aditya Sharma",
-    title: "Third-Year B.Tech CSE Student | AI/ML & Data Analytics",
+    title: "Undergraduate Engineering Student | AI/ML Enthusiast | Passionate about Intelligent Systems",
     summary: "I am a Computer Science Engineering undergraduate with a strong interest in Artificial Intelligence and Machine Learning. Dedicated to engineering scalable applications, I am passionate about understanding how intelligent systems work and how data-driven technologies can solve real-world problems. Alongside my technical pursuits, I am also a passionate Video Editor, bringing stories to life through creative visual editing. My goal is to build a robust foundation in programming, algorithms, and machine learning concepts while continuously exploring new advancements in AI. I enjoy learning new technologies, working on practical projects, and improving my problem-solving abilities through hackathons and collaborative initiatives. In the future, I aspire to specialize in AI/ML and contribute to developing innovative, impactful, and intelligent solutions.",
     location: "Delhi, India",
     email: "adityasharma27120809@gmail.com",
