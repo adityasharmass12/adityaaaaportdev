@@ -73,7 +73,7 @@ export const Footer: React.FC = () => {
             fontSize: 'clamp(6rem, 22vw, 20rem)',
             fontWeight: 800,
             lineHeight: 0.85,
-            color: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(10,22,51,0.05)',
+            color: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(10,22,51,0.10)',
             transform: 'translateY(18%)',
             whiteSpace: 'nowrap',
           }}

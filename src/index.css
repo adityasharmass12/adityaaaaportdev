@@ -91,7 +91,7 @@
   --grid-line: rgba(59, 130, 246, 0.03);
   --code-tag: rgba(147, 197, 253, 0.12);
 
-  --hero-bg: #050914;
+  --hero-bg: #020305;
   --hero-name-color: #ffffff;
   --hero-name-glow: 0 0 30px rgba(59, 130, 246, 0.4);
   --hero-img-glow: drop-shadow(0 0 20px rgba(37, 99, 235, 0.35));
@@ -327,20 +327,22 @@ body {
   display: flex;
   align-items: center;
   padding: 90px 0 0;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   background: radial-gradient(ellipse 45% 70% at 80% 90%, var(--hero-radial-glow), transparent 70%);
   isolation: isolate;
+  position: relative;
 }
 
 .hero-section::after {
   content: '';
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -40px;
   left: 0;
   z-index: 15;
-  height: 60px;
-  background: linear-gradient(to top, var(--hero-bg), transparent);
+  height: 120px;
+  background: linear-gradient(to top, var(--background), transparent);
   pointer-events: none;
 }
 
